@@ -1,0 +1,409 @@
+{
+  "meta": {
+    "actualizado": "25/05/2026",
+    "periodo_estado": "16 Mar – 21 Abr 2026",
+    "titular": "Familia Astudillo",
+    "version": "3.0"
+  },
+  "resumen": {
+    "ingreso_mensual": 10000,
+    "gasto_tarjeta_periodo": 21790.64,
+    "saldo_pendiente": 9115.16,
+    "potencial_ahorro": 3200,
+    "total_tickets_productos": 5987.02,
+    "n_tickets": 72
+  },
+  "gastos_categoria": [
+    {
+      "cat": "Despensa / Súper",
+      "emoji": "🛒",
+      "monto": 6638,
+      "tipo": "necesario"
+    },
+    {
+      "cat": "Gasolina",
+      "emoji": "⛽",
+      "monto": 5211,
+      "tipo": "necesario"
+    },
+    {
+      "cat": "Comida rápida / Rest.",
+      "emoji": "🍔",
+      "monto": 2636,
+      "tipo": "reducir"
+    },
+    {
+      "cat": "OXXO / Conveniencia",
+      "emoji": "🏪",
+      "monto": 1902,
+      "tipo": "reducir"
+    },
+    {
+      "cat": "Salud",
+      "emoji": "💊",
+      "monto": 1579,
+      "tipo": "necesario"
+    },
+    {
+      "cat": "Costco a meses (cuota)",
+      "emoji": "📆",
+      "monto": 1200,
+      "tipo": "comprometido"
+    },
+    {
+      "cat": "Compras online",
+      "emoji": "🛍️",
+      "monto": 893,
+      "tipo": "reducir"
+    },
+    {
+      "cat": "Ropa / SHEIN",
+      "emoji": "👗",
+      "monto": 855,
+      "tipo": "reducir"
+    },
+    {
+      "cat": "Caffenio (café)",
+      "emoji": "☕",
+      "monto": 850,
+      "tipo": "eliminar"
+    },
+    {
+      "cat": "Celular Telcel",
+      "emoji": "📱",
+      "monto": 479,
+      "tipo": "fijo"
+    },
+    {
+      "cat": "Netflix",
+      "emoji": "🎬",
+      "monto": 329,
+      "tipo": "evaluar"
+    },
+    {
+      "cat": "GBM / Inversión",
+      "emoji": "💰",
+      "monto": 161,
+      "tipo": "positivo"
+    }
+  ],
+  "oxxo_analisis": {
+    "total_6_meses": 5017.8,
+    "n_visitas": 37,
+    "tabaco_total": 1902,
+    "tabaco_pct": 37.9,
+    "tabaco_mensual": 317,
+    "tabaco_anual": 3804,
+    "precio_ls_dic2025": 82,
+    "precio_ls_actual": 98,
+    "sin_ls_hoy": true,
+    "categorias": [
+      {
+        "cat": "🚬 Tabaco (Lucky Strike)",
+        "monto": 1902,
+        "pct": 37.9
+      },
+      {
+        "cat": "🥤 Bebidas",
+        "monto": 1513,
+        "pct": 30.2
+      },
+      {
+        "cat": "🍿 Botanas y Dulces",
+        "monto": 1318,
+        "pct": 26.3
+      },
+      {
+        "cat": "🏠 Hogar / Varios",
+        "monto": 204,
+        "pct": 4.1
+      },
+      {
+        "cat": "🥫 Abarrotes",
+        "monto": 137,
+        "pct": 2.7
+      },
+      {
+        "cat": "🍞 Pan y Cereales",
+        "monto": 45,
+        "pct": 0.9
+      }
+    ],
+    "top_productos": [
+      {
+        "nombre": "LUCKY STRIKE OR 100S",
+        "veces": 20,
+        "total": 1902,
+        "prom": 95.1,
+        "cat": "🚬 Tabaco"
+      },
+      {
+        "nombre": "PACIFICO CLARA/LIGHT",
+        "veces": 12,
+        "total": 629,
+        "prom": 52.4,
+        "cat": "🥤 Bebidas"
+      },
+      {
+        "nombre": "COCA-COLA NR 600ML",
+        "veces": 9,
+        "total": 244,
+        "prom": 20.17,
+        "cat": "🥤 Bebidas"
+      },
+      {
+        "nombre": "SABRITAS (varios)",
+        "veces": 8,
+        "total": 371,
+        "prom": 46.38,
+        "cat": "🍿 Botanas"
+      },
+      {
+        "nombre": "TAKIS (varios)",
+        "veces": 4,
+        "total": 142,
+        "prom": 35.5,
+        "cat": "🍿 Botanas"
+      },
+      {
+        "nombre": "TOPOCHICO LIMON 600ML",
+        "veces": 4,
+        "total": 106,
+        "prom": 26.5,
+        "cat": "🥤 Bebidas"
+      }
+    ],
+    "precio_ls_historial": [
+      {
+        "fecha": "Dic 2025",
+        "precio": 82
+      },
+      {
+        "fecha": "Ene 2026",
+        "precio": 99
+      },
+      {
+        "fecha": "Feb 2026",
+        "precio": 98
+      },
+      {
+        "fecha": "Abr 2026",
+        "precio": 98
+      },
+      {
+        "fecha": "May 2026",
+        "precio": 0,
+        "nota": "Sin LS hoy ✅"
+      }
+    ]
+  },
+  "gasolina": {
+    "tickets": [
+      {
+        "fecha": "24/03/2026",
+        "estacion": "Estación 2864",
+        "litros": null,
+        "precio_lt": null,
+        "total": 966.13
+      },
+      {
+        "fecha": "06/04/2026",
+        "estacion": "Gaso Aeropuerto",
+        "litros": null,
+        "precio_lt": null,
+        "total": 200.0
+      },
+      {
+        "fecha": "06/04/2026",
+        "estacion": "Costco Gas",
+        "litros": null,
+        "precio_lt": null,
+        "total": 776.51
+      },
+      {
+        "fecha": "07/04/2026",
+        "estacion": "Diesgas Q64",
+        "litros": null,
+        "precio_lt": null,
+        "total": 700.0
+      },
+      {
+        "fecha": "14/04/2026",
+        "estacion": "Gasol Transp 3",
+        "litros": null,
+        "precio_lt": null,
+        "total": 917.4
+      },
+      {
+        "fecha": "19/04/2026",
+        "estacion": "Costco Gas",
+        "litros": null,
+        "precio_lt": null,
+        "total": 681.35
+      },
+      {
+        "fecha": "25/05/2026",
+        "estacion": "Mobil Aguajitos",
+        "litros": 39.609,
+        "precio_lt": 24.49,
+        "total": 970.02
+      }
+    ],
+    "precio_actual_lt": 24.49,
+    "total_periodo": 5211
+  },
+  "costco_tickets": [
+    {
+      "fecha": "01/04/2026",
+      "total": 588.0,
+      "articulos": 2,
+      "items_clave": [
+        "Papel Higiénico",
+        "Prana Chia Avena"
+      ]
+    },
+    {
+      "fecha": "17/05/2026",
+      "total": 3285.75,
+      "articulos": 18,
+      "items_clave": [
+        "Leche KS 12pz",
+        "Alitas",
+        "Pierna y Muslo",
+        "Lysol",
+        "Bikini DKNY"
+      ]
+    },
+    {
+      "fecha": "17/05/2026",
+      "total": 700.8,
+      "articulos": 4,
+      "items_clave": [
+        "Pan Centeno",
+        "Salchichas KS",
+        "Jumexito"
+      ]
+    },
+    {
+      "fecha": "17/05/2026",
+      "total": 20.0,
+      "articulos": 2,
+      "items_clave": [
+        "Agua 500ml",
+        "Refresco 600ml (Food Court)"
+      ]
+    }
+  ],
+  "plan_meses": [
+    {
+      "mes": "Mayo 2026",
+      "color": "red",
+      "numero": 1,
+      "accion": "Elimina Caffenio. Máx 2 salidas a comer. Cero OXXO salvo emergencia.",
+      "meta": "Reducir gasto mensual a ~$8,500"
+    },
+    {
+      "mes": "Junio 2026",
+      "color": "red",
+      "numero": 2,
+      "accion": "Liquida el saldo $9,115 con el ahorro acumulado. Abre CETES Directo con $500.",
+      "meta": "Tarjeta en $0 · Primera inversión"
+    },
+    {
+      "mes": "Julio 2026",
+      "color": "amber",
+      "numero": 3,
+      "accion": "Fondo de emergencia $500/quincena. Sube GBM de $161 → $500/mes.",
+      "meta": "Fondo: $1,000 · Inversión: $1,000"
+    },
+    {
+      "mes": "Ago–Sep 2026",
+      "color": "amber",
+      "numero": 4,
+      "accion": "Acumula fondo de emergencia hasta $15,000.",
+      "meta": "Fondo: $5,000 · Inversión: $2,500"
+    },
+    {
+      "mes": "Oct 2026",
+      "color": "green",
+      "numero": 5,
+      "accion": "Costco a meses termina. Esos $1,200 libres → inversión mensual adicional.",
+      "meta": "Sin deudas · Inversión: $1,700/mes 🎉"
+    }
+  ],
+  "proyeccion_12m": {
+    "meses": [
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dic",
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr"
+    ],
+    "deuda": [
+      7615,
+      5915,
+      4215,
+      2515,
+      815,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ahorro": [
+      500,
+      1000,
+      1500,
+      2000,
+      2500,
+      3000,
+      3500,
+      4000,
+      4500,
+      5000,
+      5500,
+      6000
+    ],
+    "inversion": [
+      506,
+      1016,
+      1531,
+      2051,
+      2576,
+      3937,
+      4508,
+      5086,
+      5671,
+      6262,
+      6861,
+      7467
+    ]
+  },
+  "alertas": [
+    {
+      "tipo": "danger",
+      "titulo": "🚬 Tabaco: $1,902 en 6 meses solo en OXXO",
+      "detalle": "Lucky Strike subió de $82 → $99 en enero (+20%). Proyección anual: $3,804. Hoy por primera vez no hubo cigarros en el ticket OXXO ✅"
+    },
+    {
+      "tipo": "warning",
+      "titulo": "💳 Saldo pendiente tarjeta: $9,115",
+      "detalle": "CAT 81.5%. Cada mes que no se liquida genera ~$440 en intereses. Prioridad máxima."
+    },
+    {
+      "tipo": "info",
+      "titulo": "⛽ Gasolina hoy: $970 — 39.6L a $24.49/L",
+      "detalle": "Mobil Aguajitos, Cabo San Lucas. Es el llenado más documentado hasta ahora."
+    }
+  ]
+}

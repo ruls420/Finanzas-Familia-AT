@@ -4,861 +4,505 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finanzas Familia Astudillo</title>
+<link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root {
-  --cream: #FAF7F2;
-  --warm-white: #FFFDF9;
-  --ink: #1C1917;
-  --ink-soft: #44403C;
-  --ink-faint: #78716C;
-  --border: #E7E3DC;
-  --border-soft: #F0EDE8;
-  --teal: #0F766E;
-  --teal-light: #CCFBF1;
-  --teal-mid: #5EEAD4;
-  --red: #B91C1C;
-  --red-light: #FEE2E2;
-  --amber: #B45309;
-  --amber-light: #FEF3C7;
-  --green: #15803D;
-  --green-light: #DCFCE7;
-  --gold: #D97706;
-  --shadow-sm: 0 1px 3px rgba(28,25,23,0.06), 0 1px 2px rgba(28,25,23,0.04);
-  --shadow-md: 0 4px 16px rgba(28,25,23,0.08), 0 2px 6px rgba(28,25,23,0.04);
-  --shadow-lg: 0 12px 40px rgba(28,25,23,0.10);
-  --radius: 16px;
-  --radius-sm: 10px;
+  --cream:#FAF7F2; --warm-white:#FFFDF9; --ink:#1C1917; --ink-soft:#44403C;
+  --ink-faint:#78716C; --border:#E7E3DC; --border-soft:#F0EDE8;
+  --teal:#0F766E; --teal-light:#CCFBF1; --teal-mid:#5EEAD4;
+  --red:#B91C1C; --red-light:#FEE2E2; --amber:#B45309; --amber-light:#FEF3C7;
+  --green:#15803D; --green-light:#DCFCE7; --gold:#D97706;
+  --shadow-sm:0 1px 3px rgba(28,25,23,.06),0 1px 2px rgba(28,25,23,.04);
+  --shadow-md:0 4px 16px rgba(28,25,23,.08);
+  --radius:16px; --radius-sm:10px;
 }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;font-size:15px;line-height:1.6}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* Loading */
+#loader{position:fixed;inset:0;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity .4s}
+#loader.hide{opacity:0;pointer-events:none}
+.loader-logo{font-family:'DM Serif Display',serif;font-size:1.8rem;color:white;margin-bottom:1.5rem;letter-spacing:-0.02em}
+.loader-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5EEAD4;margin:0 4px;animation:bounce .8s infinite}
+.loader-dot:nth-child(2){animation-delay:.15s}
+.loader-dot:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  min-height: 100vh;
-  font-size: 15px;
-  line-height: 1.6;
-}
+/* Header */
+.site-header{background:var(--ink);color:white;padding:0 1.25rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-family:'DM Serif Display',serif;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;background:#5EEAD4;border-radius:50%}
+.badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.6)}
+.update-badge{font-size:10px;color:#5EEAD4;display:flex;align-items:center;gap:4px}
 
-/* ── Header ─────────────────────────────────────────── */
-.site-header {
-  background: var(--ink);
-  color: white;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.logo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.35rem;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.logo-dot { width: 8px; height: 8px; background: var(--teal-mid); border-radius: 50%; display: inline-block; }
-.header-meta { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; text-transform: uppercase; }
-.period-badge {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.7);
-  font-weight: 500;
-}
+/* Main */
+.main{max-width:1100px;margin:0 auto;padding:2rem 1rem 4rem}
 
-/* ── Layout ──────────────────────────────────────────── */
-.main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+/* Alerts */
+.alert-banner{border-radius:var(--radius-sm);padding:1rem 1.25rem;margin-bottom:.75rem;display:flex;gap:10px;border-left:4px solid;animation:fadeUp .4s ease}
+.alert-danger{background:#FEF2F2;border-color:var(--red)}
+.alert-warning{background:var(--amber-light);border-color:var(--gold)}
+.alert-info{background:var(--teal-light);border-color:var(--teal)}
+.alert-text{font-size:13px}
+.alert-text strong{display:block;margin-bottom:2px;font-size:13.5px}
+.alert-danger .alert-text strong{color:var(--red)}
+.alert-warning .alert-text strong{color:var(--amber)}
+.alert-info .alert-text strong{color:var(--teal)}
+.alert-danger .alert-text{color:#991B1B}
+.alert-warning .alert-text{color:#92400E}
+.alert-info .alert-text{color:#134E4A}
 
-/* ── Alert banner ────────────────────────────────────── */
-.alert-banner {
-  background: linear-gradient(135deg, #FFF7ED 0%, #FFFBEB 100%);
-  border: 1px solid #FDE68A;
-  border-left: 4px solid var(--gold);
-  border-radius: var(--radius-sm);
-  padding: 1rem 1.25rem;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  animation: slideDown 0.5s ease;
-}
-@keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
-.alert-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
-.alert-text { font-size: 13.5px; color: var(--amber); }
-.alert-text strong { font-weight: 600; display: block; margin-bottom: 2px; color: #92400E; }
+/* Section label */
+.section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:2rem 0 .75rem}
 
-/* ── Section label ───────────────────────────────────── */
-.section-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 1rem;
-  margin-top: 2.5rem;
-}
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:.5rem}
+@media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+.kpi-card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1rem 1rem;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;animation:fadeUp .4s ease both}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.kpi-card.teal::before{background:var(--teal)}
+.kpi-card.red::before{background:var(--red)}
+.kpi-card.green::before{background:var(--green)}
+.kpi-card.amber::before{background:var(--gold)}
+.kpi-label{font-size:11px;color:var(--ink-faint);font-weight:500;margin-bottom:5px}
+.kpi-value{font-family:'DM Serif Display',serif;font-size:1.9rem;line-height:1;letter-spacing:-0.03em;margin-bottom:4px}
+.kpi-value.teal{color:var(--teal)}.kpi-value.red{color:var(--red)}.kpi-value.green{color:var(--green)}.kpi-value.amber{color:var(--gold)}
+.kpi-sub{font-size:11px;color:var(--ink-faint)}
 
-/* ── KPI grid ────────────────────────────────────────── */
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-@media (max-width: 700px) { .kpi-grid { grid-template-columns: repeat(2,1fr); } }
+/* Layouts */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.three-col{display:grid;grid-template-columns:1.4fr 1fr;gap:1.25rem}
+@media(max-width:720px){.two-col,.three-col{grid-template-columns:1fr}}
 
-.kpi-card {
-  background: var(--warm-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.4rem 1.25rem 1.2rem;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
-  animation: fadeUp 0.4s ease both;
-}
-.kpi-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-.kpi-card.teal::before { background: var(--teal); }
-.kpi-card.red::before { background: var(--red); }
-.kpi-card.green::before { background: var(--green); }
-.kpi-card.amber::before { background: var(--gold); }
+/* Card */
+.card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-sm);animation:fadeUp .5s ease both}
+.card-title{font-family:'DM Serif Display',serif;font-size:1.05rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
 
-.kpi-label { font-size: 11.5px; color: var(--ink-faint); font-weight: 500; margin-bottom: 6px; letter-spacing: 0.02em; }
-.kpi-value { font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1; letter-spacing: -0.03em; margin-bottom: 6px; }
-.kpi-value.teal { color: var(--teal); }
-.kpi-value.red { color: var(--red); }
-.kpi-value.green { color: var(--green); }
-.kpi-value.amber { color: var(--gold); }
-.kpi-sub { font-size: 11.5px; color: var(--ink-faint); }
+/* Cat rows */
+.cat-row{display:flex;align-items:center;padding:9px 0;border-bottom:1px solid var(--border-soft);gap:8px}
+.cat-row:last-child{border-bottom:none}
+.cat-emoji{font-size:1rem;flex-shrink:0;width:24px;text-align:center}
+.cat-name{flex:1;font-size:13px;font-weight:500}
+.cat-bar-wrap{width:80px;flex-shrink:0}
+.cat-bar-bg{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.cat-bar-fill{height:5px;border-radius:3px;transition:width 1.2s ease}
+.cat-amount{font-size:13px;font-weight:600;min-width:68px;text-align:right;flex-shrink:0}
+.cat-badge{font-size:10px;font-weight:600;padding:2px 6px;border-radius:10px;flex-shrink:0;text-transform:uppercase;letter-spacing:.04em}
+.badge-ok{background:var(--green-light);color:var(--green)}
+.badge-warn{background:var(--amber-light);color:var(--amber)}
+.badge-cut{background:var(--red-light);color:var(--red)}
+.badge-pos{background:var(--teal-light);color:var(--teal)}
+.badge-fixed{background:#F1F5F9;color:#64748B}
 
-@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-.kpi-card:nth-child(1){animation-delay:.05s}
-.kpi-card:nth-child(2){animation-delay:.1s}
-.kpi-card:nth-child(3){animation-delay:.15s}
-.kpi-card:nth-child(4){animation-delay:.2s}
+/* Insights */
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:500px){.insight-grid{grid-template-columns:1fr}}
+.insight-card{border-radius:var(--radius-sm);padding:1rem;border:1px solid transparent}
+.insight-card.cut{background:var(--red-light);border-color:#FECACA}
+.insight-card.warn{background:var(--amber-light);border-color:#FDE68A}
+.insight-card.ok{background:var(--green-light);border-color:#BBF7D0}
+.insight-card.info{background:var(--teal-light);border-color:#99F6E4}
+.insight-title{font-size:12px;font-weight:700;margin-bottom:4px;letter-spacing:.03em;text-transform:uppercase}
+.insight-card.cut .insight-title{color:var(--red)}
+.insight-card.warn .insight-title{color:var(--amber)}
+.insight-card.ok .insight-title{color:var(--green)}
+.insight-card.info .insight-title{color:var(--teal)}
+.insight-body{font-size:13px;color:var(--ink-soft);line-height:1.5}
 
-/* ── Two-column layout ───────────────────────────────── */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-.three-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.25rem; }
-@media (max-width: 720px) { .two-col, .three-col { grid-template-columns: 1fr; } }
+/* Plan rows */
+.plan-row{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border-soft);align-items:flex-start}
+.plan-row:last-child{border-bottom:none}
+.plan-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+.dot-red{background:var(--red-light);color:var(--red)}
+.dot-amber{background:var(--amber-light);color:var(--amber)}
+.dot-green{background:var(--green-light);color:var(--green)}
+.plan-mes{font-size:11px;font-weight:600;color:var(--ink-faint);margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.plan-accion{font-size:13px;color:var(--ink);line-height:1.5}
+.plan-meta{font-size:12px;color:var(--teal);font-weight:500;margin-top:3px}
 
-/* ── Card ────────────────────────────────────────────── */
-.card {
-  background: var(--warm-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-sm);
-  animation: fadeUp 0.5s ease both;
-}
-.card-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.05rem;
-  margin-bottom: 1.25rem;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.card-title .icon { font-size: 1rem; }
+/* Table */
+.prod-table{width:100%;border-collapse:collapse;font-size:13px}
+.prod-table th{text-align:left;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);padding:0 8px 10px;border-bottom:1px solid var(--border)}
+.prod-table td{padding:9px 8px;border-bottom:1px solid var(--border-soft);vertical-align:middle}
+.prod-table tr:last-child td{border-bottom:none}
+.prod-table tr:hover td{background:var(--cream)}
+.rank-1{color:#D97706;font-weight:700}.rank-2{color:#78716C;font-weight:700}.rank-3{color:#92400E;font-weight:700}.rank-num{font-size:11px;font-weight:700;color:var(--ink-faint)}
+.store-pill{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;background:var(--teal-light);color:var(--teal)}
+.store-pill.oxxo{background:#FEF3C7;color:#92400E}
 
-/* ── Category rows ───────────────────────────────────── */
-.cat-row {
-  display: flex;
-  align-items: center;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--border-soft);
-  gap: 10px;
-  animation: fadeUp 0.3s ease both;
-}
-.cat-row:last-child { border-bottom: none; }
-.cat-emoji { font-size: 1.1rem; flex-shrink: 0; width: 28px; text-align: center; }
-.cat-name { flex: 1; font-size: 13.5px; font-weight: 500; }
-.cat-bar-wrap { width: 90px; flex-shrink: 0; }
-.cat-bar-bg { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
-.cat-bar-fill { height: 5px; border-radius: 3px; transition: width 1s ease; }
-.cat-amount { font-size: 13.5px; font-weight: 600; text-align: right; min-width: 72px; flex-shrink: 0; }
-.cat-badge {
-  font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px;
-  flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.05em;
-}
-.badge-ok { background: var(--green-light); color: var(--green); }
-.badge-warn { background: var(--amber-light); color: var(--amber); }
-.badge-cut { background: var(--red-light); color: var(--red); }
+/* Fuel card */
+.fuel-stat{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-soft);font-size:13px}
+.fuel-stat:last-child{border-bottom:none}
 
-/* ── Insight cards ───────────────────────────────────── */
-.insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-@media (max-width: 500px) { .insight-grid { grid-template-columns: 1fr; } }
-.insight-card {
-  border-radius: var(--radius-sm);
-  padding: 1rem;
-  border: 1px solid transparent;
-}
-.insight-card.warn { background: var(--amber-light); border-color: #FDE68A; }
-.insight-card.cut  { background: var(--red-light);   border-color: #FECACA; }
-.insight-card.ok   { background: var(--green-light);  border-color: #BBF7D0; }
-.insight-card.info { background: var(--teal-light);   border-color: #99F6E4; }
-.insight-title { font-size: 12px; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.03em; text-transform: uppercase; }
-.insight-card.warn .insight-title { color: var(--amber); }
-.insight-card.cut  .insight-title { color: var(--red); }
-.insight-card.ok   .insight-title { color: var(--green); }
-.insight-card.info .insight-title { color: var(--teal); }
-.insight-body { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+/* Tabaco alert */
+.tabaco-box{background:linear-gradient(135deg,#FEF2F2,#FFF5F5);border:1px solid #FECACA;border-left:4px solid var(--red);border-radius:var(--radius-sm);padding:1.25rem;margin-bottom:1.25rem}
+.tabaco-title{font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem}
+.tabaco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tabaco-stat{text-align:center}
+.tabaco-stat .val{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--red);letter-spacing:-0.03em}
+.tabaco-stat .lbl{font-size:10px;color:#991B1B;font-weight:600;text-transform:uppercase}
 
-/* ── Plan meses ──────────────────────────────────────── */
-.plan-row {
-  display: flex;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border-soft);
-  align-items: flex-start;
-  animation: fadeUp 0.3s ease both;
-}
-.plan-row:last-child { border-bottom: none; }
-.plan-dot {
-  width: 32px; height: 32px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
-}
-.dot-red { background: var(--red-light); color: var(--red); }
-.dot-amber { background: var(--amber-light); color: var(--amber); }
-.dot-green { background: var(--green-light); color: var(--green); }
-.plan-mes { font-size: 12px; font-weight: 600; color: var(--ink-faint); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
-.plan-accion { font-size: 13.5px; color: var(--ink); line-height: 1.5; }
-.plan-meta { font-size: 12px; color: var(--teal); font-weight: 500; margin-top: 3px; }
+/* Footer */
+.site-footer{text-align:center;padding:2rem;font-size:12px;color:var(--ink-faint);border-top:1px solid var(--border);margin-top:3rem}
 
-/* ── Debt progress ───────────────────────────────────── */
-.debt-track {
-  background: var(--border);
-  border-radius: 6px;
-  height: 10px;
-  overflow: hidden;
-  margin: 10px 0 6px;
-}
-.debt-fill {
-  height: 10px;
-  background: linear-gradient(90deg, var(--red) 0%, #F97316 100%);
-  border-radius: 6px;
-  width: 24%;
-  transition: width 1.5s ease;
-}
-.debt-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-faint); }
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+canvas{max-height:240px}
 
-/* ── Products table ──────────────────────────────────── */
-.prod-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.prod-table th {
-  text-align: left; font-size: 11px; font-weight: 600;
-  letter-spacing: 0.07em; text-transform: uppercase;
-  color: var(--ink-faint); padding: 0 8px 10px; border-bottom: 1px solid var(--border);
-}
-.prod-table td { padding: 9px 8px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
-.prod-table tr:last-child td { border-bottom: none; }
-.prod-table tr:hover td { background: var(--cream); }
-.rank-num { font-size: 11px; font-weight: 700; color: var(--ink-faint); }
-.rank-1 { color: #D97706; }
-.rank-2 { color: #78716C; }
-.rank-3 { color: #92400E; }
-.store-pill {
-  display: inline-block; font-size: 10.5px; font-weight: 600; padding: 2px 8px;
-  border-radius: 20px; background: var(--teal-light); color: var(--teal);
-}
-.store-pill.oxxo { background: #FEF3C7; color: #92400E; }
-.store-pill.soriana { background: #EDE9FE; color: #5B21B6; }
-
-/* ── Savings projection ──────────────────────────────── */
-.saving-months { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-.month-chip {
-  padding: 8px 14px; border-radius: 10px; font-size: 13px; font-weight: 500;
-  border: 1px solid var(--border); background: var(--warm-white);
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  flex: 1; min-width: 80px;
-}
-.month-chip .m-label { font-size: 10px; color: var(--ink-faint); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-.month-chip .m-debt  { font-size: 13px; font-weight: 700; color: var(--red); }
-.month-chip .m-save  { font-size: 11px; color: var(--green); font-weight: 500; }
-
-/* ── Footer ──────────────────────────────────────────── */
-.site-footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 12px;
-  color: var(--ink-faint);
-  border-top: 1px solid var(--border);
-  margin-top: 4rem;
-}
-
-/* ── Canvas fix ──────────────────────────────────────── */
-canvas { max-height: 240px; }
+/* Refresh button */
+.refresh-btn{background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);border-radius:20px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.refresh-btn:hover{background:rgba(255,255,255,.1);color:white}
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="logo">
-    <span class="logo-dot"></span>
-    Finanzas Astudillo
+<div id="loader">
+  <div class="loader-logo">💰 Finanzas Astudillo</div>
+  <div>
+    <span class="loader-dot"></span>
+    <span class="loader-dot"></span>
+    <span class="loader-dot"></span>
   </div>
-  <span class="period-badge">Abr 2026 · Los Cabos</span>
+  <div style="color:rgba(255,255,255,.3);font-size:12px;margin-top:1rem">Cargando datos...</div>
+</div>
+
+<header class="site-header">
+  <div class="logo"><span class="logo-dot"></span>Finanzas Astudillo</div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="update-badge" id="updateBadge">⬤ Cargando...</span>
+    <button class="refresh-btn" onclick="location.reload()">↻ Actualizar</button>
+  </div>
 </header>
 
-<main class="main">
+<main class="main" id="appContent" style="display:none">
 
-  <!-- Alert -->
-  <div class="alert-banner">
-    <span class="alert-icon">⚠️</span>
-    <div class="alert-text">
-      <strong>🚬 Hallazgo importante: $1,902 en tabaco (Lucky Strike) en 6 meses solo en OXXO</strong>
-      El precio subió de $82 a $99 en enero 2026 (+20%). Proyectado a 12 meses: <strong>$3,804/año</strong> solo en cigarros. Esto representa casi un mes completo de salario. Más abajo puedes ver el análisis completo de los 67 tickets de OXXO.
-    </div>
-  </div>
+  <!-- Alertas dinámicas -->
+  <div id="alertasContainer"></div>
 
   <!-- KPIs -->
-  <p class="section-label">Resumen del período — 16 Mar al 21 Abr 2026</p>
-  <div class="kpi-grid">
-    <div class="kpi-card teal">
-      <div class="kpi-label">Ingreso mensual estimado</div>
-      <div class="kpi-value teal">$10,000</div>
-      <div class="kpi-sub">Salario quincenal × 2</div>
-    </div>
-    <div class="kpi-card red">
-      <div class="kpi-label">Gastos en tarjeta</div>
-      <div class="kpi-value red">$21,790</div>
-      <div class="kpi-sub">37 días · 62 movimientos</div>
-    </div>
-    <div class="kpi-card amber">
-      <div class="kpi-label">Saldo pendiente</div>
-      <div class="kpi-value amber">$9,115</div>
-      <div class="kpi-sub">Pagar antes del 11-may</div>
-    </div>
-    <div class="kpi-card green">
-      <div class="kpi-label">Potencial de ahorro</div>
-      <div class="kpi-value green">$3,200</div>
-      <div class="kpi-sub">Reduciendo gastos evitables</div>
-    </div>
-  </div>
+  <p class="section-label" id="periodoLabel"></p>
+  <div class="kpi-grid" id="kpiGrid"></div>
 
   <!-- Gastos + Donut -->
   <p class="section-label">¿En qué se fue el dinero?</p>
   <div class="three-col">
-
-    <div class="card" style="animation-delay:.1s">
-      <div class="card-title"><span class="icon">📊</span> Gastos por categoría</div>
-
-      <div class="cat-row">
-        <span class="cat-emoji">🛒</span>
-        <span class="cat-name">Despensa / Súper</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:100%;background:#0F766E"></div></div></div>
-        <span class="cat-amount">$6,638</span>
-        <span class="cat-badge badge-ok">necesario</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">⛽</span>
-        <span class="cat-name">Gasolina</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:64%;background:#0F766E"></div></div></div>
-        <span class="cat-amount">$4,241</span>
-        <span class="cat-badge badge-ok">necesario</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">🍔</span>
-        <span class="cat-name">Comida rápida / Restaurantes</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:40%;background:#B91C1C"></div></div></div>
-        <span class="cat-amount">$2,636</span>
-        <span class="cat-badge badge-cut">reducir</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">🏪</span>
-        <span class="cat-name">OXXO / Conveniencia</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:29%;background:#B91C1C"></div></div></div>
-        <span class="cat-amount">$1,902</span>
-        <span class="cat-badge badge-cut">reducir</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">💊</span>
-        <span class="cat-name">Salud</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:24%;background:#0F766E"></div></div></div>
-        <span class="cat-amount">$1,579</span>
-        <span class="cat-badge badge-ok">necesario</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">📆</span>
-        <span class="cat-name">Costco a meses (cuota)</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:18%;background:#D97706"></div></div></div>
-        <span class="cat-amount">$1,200</span>
-        <span class="cat-badge badge-warn">comprometido</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">🛍️</span>
-        <span class="cat-name">Compras online</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:13%;background:#B91C1C"></div></div></div>
-        <span class="cat-amount">$893</span>
-        <span class="cat-badge badge-cut">reducir</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">☕</span>
-        <span class="cat-name">Caffenio (café)</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:13%;background:#B91C1C"></div></div></div>
-        <span class="cat-amount">$850</span>
-        <span class="cat-badge badge-cut">eliminar</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">👗</span>
-        <span class="cat-name">Ropa / SHEIN</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:13%;background:#B91C1C"></div></div></div>
-        <span class="cat-amount">$855</span>
-        <span class="cat-badge badge-cut">reducir</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">📱</span>
-        <span class="cat-name">Celular Telcel</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:7%;background:#78716C"></div></div></div>
-        <span class="cat-amount">$479</span>
-        <span class="cat-badge badge-ok">fijo</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">🎬</span>
-        <span class="cat-name">Netflix</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:5%;background:#78716C"></div></div></div>
-        <span class="cat-amount">$329</span>
-        <span class="cat-badge badge-warn">evaluar</span>
-      </div>
+    <div class="card">
+      <div class="card-title"><span>📊</span> Gastos por categoría</div>
+      <div id="catList"></div>
     </div>
-
-    <div class="card" style="animation-delay:.15s">
-      <div class="card-title"><span class="icon">🍩</span> Distribución</div>
+    <div class="card">
+      <div class="card-title"><span>🍩</span> Distribución</div>
       <canvas id="donutChart"></canvas>
-      <div style="margin-top:1.25rem;display:flex;flex-direction:column;gap:7px">
-        <div style="display:flex;align-items:center;gap:8px;font-size:12.5px">
-          <span style="width:10px;height:10px;border-radius:2px;background:#0F766E;flex-shrink:0"></span>
-          <span style="flex:1;color:var(--ink-soft)">Gastos necesarios</span>
-          <strong>63.3%</strong>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:12.5px">
-          <span style="width:10px;height:10px;border-radius:2px;background:#B91C1C;flex-shrink:0"></span>
-          <span style="flex:1;color:var(--ink-soft)">Reducibles / evitables</span>
-          <strong style="color:var(--red)">34.3%</strong>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:12.5px">
-          <span style="width:10px;height:10px;border-radius:2px;background:#D97706;flex-shrink:0"></span>
-          <span style="flex:1;color:var(--ink-soft)">Comprometido (meses)</span>
-          <strong>5.5%</strong>
-        </div>
-      </div>
-      <div style="margin-top:1.25rem;padding:1rem;background:var(--red-light);border-radius:10px;border:1px solid #FECACA">
-        <div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Gastos evitables este período</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--red);letter-spacing:-0.03em">$7,465</div>
-        <div style="font-size:12px;color:#991B1B;margin-top:2px">Ese dinero pudo ser ahorro o pago de deuda</div>
-      </div>
+      <div id="donutLegend" style="margin-top:1.25rem;display:flex;flex-direction:column;gap:7px"></div>
+      <div id="evitableBox" style="margin-top:1.25rem;padding:1rem;background:var(--red-light);border-radius:10px;border:1px solid #FECACA"></div>
     </div>
-
   </div>
 
-  <!-- Fugas detalladas -->
+  <!-- OXXO Tabaco -->
+  <p class="section-label">Análisis OXXO — 72 tickets · Dic 2025 a May 2026</p>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><span>🏪</span> Desglose OXXO por categoría</div>
+      <div id="oxxoCatList"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span>🚬</span> Lucky Strike — el gasto más constante</div>
+      <div id="tabacoBox"></div>
+    </div>
+  </div>
+
+  <!-- OXXO top productos -->
+  <div class="card" style="margin-top:1.25rem">
+    <div class="card-title"><span>📋</span> Productos más comprados en OXXO</div>
+    <div style="overflow-x:auto"><table class="prod-table" id="oxxoTable">
+      <thead><tr><th>#</th><th>Producto</th><th>Veces</th><th>Total</th><th>Prom.</th><th>Cat.</th></tr></thead>
+      <tbody id="oxxoBody"></tbody>
+    </table></div>
+    <div id="oxxoInsight" style="margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+  </div>
+
+  <!-- Gasolina -->
+  <p class="section-label">Historial de gasolina</p>
+  <div class="card">
+    <div class="card-title"><span>⛽</span> Registro de llenados</div>
+    <div id="gasolinaList"></div>
+    <canvas id="gasolinaChart" style="max-height:160px;margin-top:1.25rem"></canvas>
+  </div>
+
+  <!-- Plan -->
+  <p class="section-label">Plan mes a mes</p>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><span>🗓️</span> Ruta hacia el equilibrio financiero</div>
+      <div id="planList"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span>📈</span> Proyección 12 meses</div>
+      <canvas id="growthChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Fugas -->
   <p class="section-label">Las 4 fugas principales</p>
   <div class="insight-grid">
     <div class="insight-card cut">
-      <div class="insight-title">🏪 OXXO — $1,902 · 9 visitas</div>
-      <div class="insight-body">Promedio <strong>$211 por visita</strong>. Lo mismo en Costco o Soriana cuesta entre 30–50% menos. Es la fuga más silenciosa porque cada visita parece pequeña.</div>
+      <div class="insight-title">🚬 Tabaco — $317/mes promedio</div>
+      <div class="insight-body">Lucky Strike en 20 de 37 visitas OXXO. Precio subió de $82 → $99 en enero. <strong>Hoy por primera vez sin cigarros</strong> — ¿es el inicio del cambio? 💪</div>
     </div>
     <div class="insight-card cut">
-      <div class="insight-title">☕ Caffenio — $850 · 8 recargas</div>
-      <div class="insight-body">$850 al mes en café de máquina = <strong>$10,200 al año</strong>. Eliminar esto por completo no cambia la calidad de vida pero sí el ahorro.</div>
+      <div class="insight-title">☕ Caffenio — $850/mes</div>
+      <div class="insight-body">8 recargas al mes = <strong>$10,200 al año</strong>. Eliminar por completo no cambia calidad de vida pero sí el ahorro.</div>
     </div>
     <div class="insight-card warn">
-      <div class="insight-title">🍔 Comida rápida — $2,636 · 9 salidas</div>
-      <div class="insight-body">Carl's Jr (3×), Burger King, Little Caesars, Taco Ranger, Rappi. Reducir a <strong>2 salidas por semana</strong> ahorra ~$1,500/mes sin sacrificar mucho.</div>
+      <div class="insight-title">🍔 Comida rápida — $2,636</div>
+      <div class="insight-body">9 salidas en el período. Reducir a 2/semana ahorra ~$1,500/mes sin sacrificar mucho.</div>
     </div>
     <div class="insight-card warn">
-      <div class="insight-title">👗 SHEIN + Amazon — $1,748</div>
-      <div class="insight-body">$855 en SHEIN en una sola compra + $893 en Amazon/otros. Establecer un <strong>presupuesto fijo de $300/mes</strong> para compras online evita el impulso.</div>
-    </div>
-  </div>
-
-  <!-- Deuda + Plan -->
-  <p class="section-label">Estado de la deuda y plan de liquidación</p>
-  <div class="two-col">
-
-    <div class="card" style="animation-delay:.2s">
-      <div class="card-title"><span class="icon">💳</span> Deuda tarjeta Costco Banamex</div>
-      <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--ink-faint);margin-bottom:4px">
-        <span>Saldo actual</span>
-        <span style="font-weight:600;color:var(--red)">$9,115</span>
-      </div>
-      <div class="debt-track"><div class="debt-fill" id="debtBar"></div></div>
-      <div class="debt-labels">
-        <span>$0 pagado</span>
-        <span>Meta: $9,115</span>
-      </div>
-      <div style="margin-top:1.25rem;padding:.9rem;background:var(--red-light);border-radius:10px;font-size:13px;color:#991B1B;border:1px solid #FECACA">
-        <strong>⚠️ CAT 81.5%</strong> — Si solo pagas el mínimo ($480), tardarías <strong>40 meses</strong> y pagarías $10,675 en intereses adicionales.
-      </div>
-      <div style="margin-top:1rem;padding:.9rem;background:var(--green-light);border-radius:10px;font-size:13px;color:#166534;border:1px solid #BBF7D0">
-        <strong>✅ Si reduces gastos evitables este mes</strong> → tienes $3,200 extra → liquidas el 35% de la deuda en un solo pago.
-      </div>
-
-      <div style="margin-top:1.25rem">
-        <div style="font-size:12px;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">Costco a meses (separado)</div>
-        <div class="saving-months">
-          <div class="month-chip"><span class="m-label">May</span><span class="m-debt">$1,200</span><span class="m-save">4 pagos restantes</span></div>
-          <div class="month-chip"><span class="m-label">Jun</span><span class="m-debt">$1,200</span></div>
-          <div class="month-chip"><span class="m-label">Jul</span><span class="m-debt">$1,200</span></div>
-          <div class="month-chip"><span class="m-label">Ago</span><span class="m-debt">$1,200</span></div>
-          <div class="month-chip" style="background:var(--green-light);border-color:#BBF7D0"><span class="m-label">Sep</span><span class="m-debt" style="color:var(--green)">$0 🎉</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" style="animation-delay:.25s">
-      <div class="card-title"><span class="icon">🗓️</span> Plan mes a mes</div>
-
-      <div class="plan-row">
-        <div class="plan-dot dot-red">1</div>
-        <div>
-          <div class="plan-mes">Mayo 2026 — Urgente</div>
-          <div class="plan-accion">Elimina Caffenio. Máx 2 salidas a comer por semana. Cero OXXO salvo emergencia. Tarjeta en $0 al corte.</div>
-          <div class="plan-meta">→ Ahorro posible: $3,200 · Deuda: $9,115 → $5,915</div>
-        </div>
-      </div>
-      <div class="plan-row">
-        <div class="plan-dot dot-red">2</div>
-        <div>
-          <div class="plan-mes">Junio 2026 — Liquidar</div>
-          <div class="plan-accion">Usa el ahorro acumulado para liquidar el saldo restante. Abre cuenta CETES Directo con $500.</div>
-          <div class="plan-meta">→ Tarjeta en $0 · Primera inversión</div>
-        </div>
-      </div>
-      <div class="plan-row">
-        <div class="plan-dot dot-amber">3</div>
-        <div>
-          <div class="plan-mes">Julio 2026 — Construir</div>
-          <div class="plan-accion">Inicia fondo de emergencia: $500 por quincena. Sube aportación a GBM de $161 → $500/mes.</div>
-          <div class="plan-meta">→ Fondo emergencia: $1,000 · Inversión: $1,000</div>
-        </div>
-      </div>
-      <div class="plan-row">
-        <div class="plan-dot dot-amber">4</div>
-        <div>
-          <div class="plan-mes">Agosto–Septiembre — Crecer</div>
-          <div class="plan-accion">Continúa acumulando fondo de emergencia hasta $15,000. En octubre termina Costco a meses.</div>
-          <div class="plan-meta">→ Fondo: $5,000 · Inversión: $2,500</div>
-        </div>
-      </div>
-      <div class="plan-row">
-        <div class="plan-dot dot-green">5</div>
-        <div>
-          <div class="plan-mes">Octubre 2026 — Libertad</div>
-          <div class="plan-accion">Costco a meses termina. Esos $1,200 libres se convierten en inversión mensual adicional.</div>
-          <div class="plan-meta">→ Sin deudas · Inversión mensual: $1,700 🎉</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Top productos -->
-  <p class="section-label">Productos más comprados (tickets registrados)</p>
-  <div class="card" style="animation-delay:.3s">
-    <div class="card-title"><span class="icon">🧾</span> Historial de productos — Costco · Soriana · OXXO</div>
-    <div style="overflow-x:auto">
-    <table class="prod-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Producto</th>
-          <th>Tienda</th>
-          <th>Veces comprado</th>
-          <th>Total gastado</th>
-          <th>Precio prom.</th>
-          <th>Categoría</th>
-        </tr>
-      </thead>
-      <tbody id="prodBody"></tbody>
-    </table>
-    </div>
-    <div style="margin-top:1rem;padding:.85rem;background:var(--amber-light);border-radius:10px;font-size:13px;color:#92400E;border:1px solid #FDE68A">
-      📸 <strong>¿Tienes un ticket a la mano?</strong> Manda la foto al chat de Claude y Raúl lo agrega aquí con un clic. Cada ticket registrado hace el análisis más preciso.
-    </div>
-  </div>
-
-  <!-- Proyección ahorro -->
-  <p class="section-label">Proyección — si seguimos el plan</p>
-  <div class="card" style="animation-delay:.35s">
-    <div class="card-title"><span class="icon">📈</span> Crecimiento del ahorro e inversión (12 meses)</div>
-    <canvas id="growthChart" style="max-height:280px"></canvas>
-  </div>
-
-  <!-- Comparativa OXXO -->
-  <p class="section-label">Lo que pagamos de más en OXXO</p>
-  <div class="card" style="animation-delay:.4s">
-    <div class="card-title"><span class="icon">⚠️</span> OXXO vs Costco / Soriana — mismo producto, precio muy diferente</div>
-    <div style="overflow-x:auto">
-    <table class="prod-table">
-      <thead>
-        <tr><th>Producto</th><th>Precio OXXO</th><th>Precio alternativa</th><th>Pagas de más</th><th>En %</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Refresco 600ml</td><td style="color:var(--red);font-weight:600">$22</td><td>$14 (Soriana 2L)</td><td style="color:var(--red);font-weight:600">$8</td><td style="color:var(--red)">+57%</td></tr>
-        <tr><td>Papas/Snack 45g</td><td style="color:var(--red);font-weight:600">$18</td><td>$9.50 (Costco)</td><td style="color:var(--red);font-weight:600">$8.50</td><td style="color:var(--red)">+89%</td></tr>
-        <tr><td>Agua 600ml</td><td style="color:var(--red);font-weight:600">$19</td><td>$5.50 (Costco Epura)</td><td style="color:var(--red);font-weight:600">$13.50</td><td style="color:var(--red)">+245%</td></tr>
-        <tr><td>Bebida energética 250ml</td><td style="color:var(--red);font-weight:600">$42</td><td>$28 (Soriana)</td><td style="color:var(--red);font-weight:600">$14</td><td style="color:var(--red)">+50%</td></tr>
-        <tr><td>Chocolate barra</td><td style="color:var(--red);font-weight:600">$12</td><td>$8 (Costco)</td><td style="color:var(--red);font-weight:600">$4</td><td style="color:var(--red)">+50%</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <div style="margin-top:1rem;padding:.9rem;background:var(--red-light);border-radius:10px;font-size:13px;color:#991B1B;border:1px solid #FECACA">
-      En este período gastaste <strong>$1,902 en OXXO</strong>. Comprando lo mismo en Costco o Soriana habrías pagado aproximadamente <strong>$950–$1,100</strong>. Ahorro potencial: <strong>$800–$950/mes</strong>.
+      <div class="insight-title">🏪 OXXO bebidas — $1,513</div>
+      <div class="insight-body">Cada refresco aquí cuesta 40–60% más que en Costco. Llevar agua de casa = ~$200/mes ahorrados.</div>
     </div>
   </div>
 
 </main>
 
-
-  <!-- OXXO Deep Analysis -->
-  <p class="section-label">Análisis profundo OXXO — 67 tickets · Dic 2025 a May 2026</p>
-  <div class="two-col">
-
-    <div class="card" style="animation-delay:.4s">
-      <div class="card-title"><span class="icon">🏪</span> ¿En qué se va el dinero del OXXO?</div>
-      <div style="margin-bottom:1rem;padding:.9rem;background:#FEF2F2;border-radius:10px;border:1px solid #FECACA">
-        <div style="font-size:11px;font-weight:700;color:#991B1B;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Total gastado en 6 meses</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:#B91C1C;letter-spacing:-0.03em">$4,932</div>
-        <div style="font-size:12px;color:#991B1B">35 visitas únicas · 92 productos distintos</div>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">🚬</span>
-        <span class="cat-name">Tabaco (Lucky Strike)</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:100%;background:#B91C1C"></div></div></div>
-        <span class="cat-amount" style="color:#B91C1C">$1,902</span>
-        <span class="cat-badge badge-cut">38.6%</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">🥤</span>
-        <span class="cat-name">Bebidas (refrescos, cervezas)</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:75%;background:#D97706"></div></div></div>
-        <span class="cat-amount">$1,428</span>
-        <span class="cat-badge badge-warn">29.0%</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">🍿</span>
-        <span class="cat-name">Botanas y dulces</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:65%;background:#D97706"></div></div></div>
-        <span class="cat-amount">$1,233</span>
-        <span class="cat-badge badge-warn">25.0%</span>
-      </div>
-      <div class="cat-row">
-        <span class="cat-emoji">🏠</span>
-        <span class="cat-name">Hogar / Varios</span>
-        <div class="cat-bar-wrap"><div class="cat-bar-bg"><div class="cat-bar-fill" style="width:10%;background:#78716C"></div></div></div>
-        <span class="cat-amount">$205</span>
-        <span class="cat-badge badge-ok">4.1%</span>
-      </div>
-    </div>
-
-    <div class="card" style="animation-delay:.45s">
-      <div class="card-title"><span class="icon">🚬</span> Lucky Strike — el gasto más constante</div>
-      <div style="margin-bottom:1rem;padding:.9rem;background:#FEF2F2;border-radius:10px;border:1px solid #FECACA">
-        <div style="font-size:11px;font-weight:700;color:#991B1B;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Precio subió 20% de dic→ene</div>
-        <div style="display:flex;justify-content:space-between;align-items:flex-end">
-          <div><div style="font-size:11px;color:#991B1B">Dic 2025</div><div style="font-size:1.4rem;font-family:'DM Serif Display',serif;color:#B91C1C">$82</div></div>
-          <div style="font-size:1.2rem;color:#B91C1C">→</div>
-          <div><div style="font-size:11px;color:#991B1B">Ene 2026</div><div style="font-size:1.4rem;font-family:'DM Serif Display',serif;color:#B91C1C">$99</div></div>
-          <div style="font-size:1.2rem;color:#B91C1C">→</div>
-          <div><div style="font-size:11px;color:#991B1B">Proyección 2027</div><div style="font-size:1.4rem;font-family:'DM Serif Display',serif;color:#B91C1C">$120?</div></div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem">
-        <div style="background:#FFF7ED;border:1px solid #FDE68A;border-radius:10px;padding:.8rem;text-align:center">
-          <div style="font-size:11px;color:#92400E;font-weight:600;text-transform:uppercase">Por mes</div>
-          <div style="font-size:1.5rem;font-family:'DM Serif Display',serif;color:#B45309">$317</div>
-        </div>
-        <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:.8rem;text-align:center">
-          <div style="font-size:11px;color:#991B1B;font-weight:600;text-transform:uppercase">Por año</div>
-          <div style="font-size:1.5rem;font-family:'DM Serif Display',serif;color:#B91C1C">$3,804</div>
-        </div>
-      </div>
-      <div style="padding:.9rem;background:#DCFCE7;border-radius:10px;border:1px solid #BBF7D0;font-size:13px;color:#166534">
-        <strong>Si se elimina este gasto:</strong> $317/mes → en 6 meses = <strong>$1,902</strong> ahorrados = 20% del saldo de la tarjeta liquidado solo con este cambio. En un año = <strong>$3,804</strong> que podrían crecer al 10% anual en inversión.
-      </div>
-    </div>
-
-  </div>
-
-  <!-- OXXO products top -->
-  <div class="card" style="animation-delay:.5s;margin-top:1.25rem">
-    <div class="card-title"><span class="icon">📋</span> Productos más comprados en OXXO (6 meses)</div>
-    <table class="prod-table">
-      <thead><tr><th>#</th><th>Producto</th><th>Veces</th><th>Total gastado</th><th>Precio prom.</th><th>Categoría</th></tr></thead>
-      <tbody>
-        <tr style="background:#FEF2F2"><td><span class="rank-1">🥇</span></td><td style="font-weight:600">LUCKY STRIKE OR 100S</td><td style="text-align:center;font-weight:700;color:#B91C1C">20×</td><td style="text-align:right;font-weight:700;color:#B91C1C">$1,902</td><td style="text-align:right">$95.10</td><td style="font-size:12px">🚬 Tabaco</td></tr>
-        <tr><td><span class="rank-2">🥈</span></td><td style="font-weight:600">PACIFICO CLARA/LIGHT</td><td style="text-align:center;font-weight:700">12×</td><td style="text-align:right;font-weight:700;color:#D97706">$629</td><td style="text-align:right">$52.40</td><td style="font-size:12px">🥤 Bebidas</td></tr>
-        <tr style="background:#F4F6F9"><td><span class="rank-3">🥉</span></td><td style="font-weight:600">COCA-COLA NR 600ML</td><td style="text-align:center;font-weight:700">9×</td><td style="text-align:right;font-weight:700;color:#D97706">$244</td><td style="text-align:right">$20.17</td><td style="font-size:12px">🥤 Bebidas</td></tr>
-        <tr><td><span class="rank-num">4</span></td><td>SABRITAS (varios)</td><td style="text-align:center;font-weight:700">8×</td><td style="text-align:right;color:#D97706">$371</td><td style="text-align:right">$46.38</td><td style="font-size:12px">🍿 Botanas</td></tr>
-        <tr style="background:#F4F6F9"><td><span class="rank-num">5</span></td><td>TAKIS (varios)</td><td style="text-align:center;font-weight:700">4×</td><td style="text-align:right;color:#D97706">$142</td><td style="text-align:right">$35.50</td><td style="font-size:12px">🍿 Botanas</td></tr>
-        <tr><td><span class="rank-num">6</span></td><td>TOPOCHICO LIMON 600ML</td><td style="text-align:center;font-weight:700">4×</td><td style="text-align:right;color:#D97706">$106</td><td style="text-align:right">$26.50</td><td style="font-size:12px">🥤 Bebidas</td></tr>
-      </tbody>
-    </table>
-    <div style="margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:.85rem;font-size:13px;color:#991B1B;border-left:3px solid #B91C1C">
-        <strong>🚬 El tabaco domina:</strong> 38.6% de todo lo gastado en OXXO es un solo producto que se compra en promedio cada 9 días.
-      </div>
-      <div style="background:#FFF7ED;border:1px solid #FDE68A;border-radius:10px;padding:.85rem;font-size:13px;color:#92400E;border-left:3px solid #D97706">
-        <strong>🥤 Bebidas en OXXO:</strong> Cada lata/botella aquí cuesta 40–60% más que en Costco. Llevar agua de casa eliminaría ~$200/mes.
-      </div>
-    </div>
-  </div>
-
-<footer class="site-footer">
-  Familia Astudillo · Los Cabos, BCS · Actualizado: 25-May-2026 · 67 tickets OXXO + Costco registrados (Dic 2025–May 2026)<br>
-  <span style="color:var(--border)">──</span> Este dashboard es privado y solo para uso familiar <span style="color:var(--border)">──</span>
+<footer class="site-footer" id="appFooter" style="display:none">
+  Familia Astudillo · Los Cabos, BCS<br>
+  <span id="footerUpdate" style="color:var(--teal)"></span>
 </footer>
 
 <script>
-// ── Productos top ────────────────────────────────────────
-const productos = [
-  { rank:1,  nombre:"🆕 ALITAS MARINADAS + PIERNA Y MUSLO", tienda:"Costco",  veces:2,  total:529.82, prom:264.91, cat:"🥩 Carnes", nuevo:true },
-  { rank:2,  nombre:"🆕 KS SALCHICHAS RES",                tienda:"Costco",  veces:1,  total:377.48, prom:377.48, cat:"🥩 Carnes", nuevo:true },
-  { rank:3,  nombre:"🆕 LYSOL TOILET 4PACK",               tienda:"Costco",  veces:1,  total:408.18, prom:408.18, cat:"🧴 Limpieza", nuevo:true },
-  { rank:4,  nombre:"🆕 KS LECHE DESLACTOSADA 12PZ",       tienda:"Costco",  veces:1,  total:305.87, prom:305.87, cat:"🥛 Lácteos", nuevo:true },
-  { rank:5,  nombre:"🆕 BIKINI DKNY 5 PZS",               tienda:"Costco",  veces:1,  total:346.79, prom:346.79, cat:"🧼 Personal", nuevo:true },
-  { rank:6,  nombre:"🆕 KS JAMON COCIDO",                  tienda:"Costco",  veces:1,  total:183.11, prom:183.11, cat:"🥩 Carnes", nuevo:true },
-  { rank:7,  nombre:"PAPEL HIGIENICO KIRKLAND 30R",         tienda:"Costco",  veces:2,  total:876.52, prom:438.26, cat:"🧴 Limpieza" },
-  { rank:8,  nombre:"ATUN POUCH 10/74G",                   tienda:"Costco",  veces:2,  total:325.30, prom:162.65, cat:"🥫 Abarrotes" },
-  { rank:9,  nombre:"🆕 KS PRETZELS + PRETZEL CRUJIENTE",  tienda:"Costco",  veces:2,  total:335.53, prom:167.77, cat:"🍿 Botanas", nuevo:true },
-  { rank:10, nombre:"🆕 JUMEXITO 24/200ML",                tienda:"Costco",  veces:1,  total:219.94, prom:219.94, cat:"🥤 Bebidas", nuevo:true },
-];
+// ── Config ────────────────────────────────────────────────────────────────────
+const JSON_URL = 'datos.json?v=' + Date.now(); // cache busting
 
-const tbody = document.getElementById('prodBody');
-productos.forEach(p => {
-  const storeClass = p.tienda === 'OXXO' ? 'oxxo' : (p.tienda === 'Soriana' ? 'soriana' : '');
-  const rankClass = p.rank===1?'rank-1':p.rank===2?'rank-2':p.rank===3?'rank-3':'rank-num';
-  const medal = p.rank===1?'🥇':p.rank===2?'🥈':p.rank===3?'🥉':'';
-  tbody.innerHTML += `
-    <tr style="${p.nuevo?'background:rgba(15,118,110,0.04)':''}">
-      <td><span class="${rankClass}">${medal||p.rank}</span></td>
-      <td style="font-weight:500;font-size:13px">${p.nombre}${p.nuevo?'<span style="margin-left:6px;font-size:10px;background:#CCFBF1;color:#0F766E;padding:1px 6px;border-radius:8px;font-weight:600">HOY</span>':''}</td>
-      <td><span class="store-pill ${storeClass}">${p.tienda}</span></td>
-      <td style="text-align:center;font-weight:600">${p.veces}×</td>
-      <td style="text-align:right;font-weight:700;color:var(--red)">$${p.total.toLocaleString('es-MX')}</td>
-      <td style="text-align:right;color:var(--ink-faint)">$${p.prom.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
-      <td style="font-size:12px;color:var(--ink-faint)">${p.cat}</td>
-    </tr>`;
-});
+// ── Helpers ───────────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const fmt = n => '$' + (n||0).toLocaleString('es-MX', {minimumFractionDigits:0, maximumFractionDigits:0});
+const fmt2 = n => '$' + (n||0).toLocaleString('es-MX', {minimumFractionDigits:2, maximumFractionDigits:2});
 
-// ── Donut chart ──────────────────────────────────────────
-const donutCtx = document.getElementById('donutChart').getContext('2d');
-new Chart(donutCtx, {
-  type: 'doughnut',
-  data: {
-    labels: ['Despensa/Súper','Gasolina','Comida rápida','OXXO','Salud','Meses Costco','Compras online','Caffenio','Ropa','Celular','Netflix'],
-    datasets: [{
-      data: [6638, 4241, 2636, 1902, 1579, 1200, 893, 850, 855, 479, 329],
-      backgroundColor: [
-        '#0F766E','#0D9488','#B91C1C','#DC2626','#15803D',
-        '#D97706','#EA580C','#C2410C','#9F1239','#78716C','#4B5563'
-      ],
-      borderWidth: 2,
-      borderColor: '#FFFDF9',
-      hoverOffset: 8
-    }]
-  },
-  options: {
-    cutout: '68%',
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: ctx => ` $${ctx.parsed.toLocaleString('es-MX')} (${((ctx.parsed/21790)*100).toFixed(1)}%)`
-        }
-      }
-    }
-  }
-});
-
-// ── Growth chart ─────────────────────────────────────────
-const meses = ['May','Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr'];
-// Deuda: baja $1,500/mes aprox con plan
-const deuda  = [7615, 5915, 4215, 2515,  815,    0,    0,    0,    0,    0,    0,    0];
-// Ahorro: $500/mes
-const ahorro  = [ 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000];
-// Inversión con interés compuesto ~10% anual
-const inv = [];
-let saldoInv = 0;
-for (let i = 0; i < 12; i++) {
-  const extra = i >= 5 ? 1700 : 500; // desde oct suman los $1,200 de meses
-  saldoInv = saldoInv * (1 + 0.10/12) + extra;
-  inv.push(Math.round(saldoInv));
+function badgeClass(tipo) {
+  const map = {necesario:'badge-ok', reducir:'badge-cut', comprometido:'badge-warn',
+               eliminar:'badge-cut', fijo:'badge-fixed', evaluar:'badge-warn', positivo:'badge-pos'};
+  return map[tipo] || 'badge-fixed';
+}
+function badgeLabel(tipo) {
+  const map = {necesario:'necesario', reducir:'reducir', comprometido:'comprometido',
+               eliminar:'eliminar', fijo:'fijo', evaluar:'evaluar', positivo:'inversión'};
+  return map[tipo] || tipo;
 }
 
-const growthCtx = document.getElementById('growthChart').getContext('2d');
-new Chart(growthCtx, {
-  type: 'bar',
-  data: {
-    labels: meses,
-    datasets: [
-      {
-        label: 'Deuda pendiente',
-        data: deuda,
-        backgroundColor: 'rgba(185,28,28,0.75)',
-        borderRadius: 4,
-        order: 2
-      },
-      {
-        label: 'Fondo emergencia',
-        data: ahorro,
-        backgroundColor: 'rgba(15,118,110,0.75)',
-        borderRadius: 4,
-        order: 2
-      },
-      {
-        label: 'Inversión (c/interés)',
-        data: inv,
-        backgroundColor: 'rgba(214,119,6,0.75)',
-        borderRadius: 4,
-        order: 2
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    interaction: { mode: 'index' },
-    plugins: {
-      legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 12 }, boxWidth: 12 } },
-      tooltip: {
-        callbacks: { label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString('es-MX')}` }
-      }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { font: { family: 'DM Sans', size: 12 } } },
-      y: {
-        grid: { color: 'rgba(0,0,0,0.04)' },
-        ticks: {
-          font: { family: 'DM Sans', size: 11 },
-          callback: v => '$' + (v/1000).toFixed(0) + 'k'
-        }
-      }
-    }
+// ── Main render ───────────────────────────────────────────────────────────────
+async function loadAndRender() {
+  try {
+    const res = await fetch(JSON_URL);
+    if (!res.ok) throw new Error('No se pudo cargar datos.json');
+    const d = await res.json();
+    render(d);
+  } catch(e) {
+    $('loader').innerHTML = `
+      <div style="color:white;text-align:center;padding:2rem">
+        <div style="font-size:2rem;margin-bottom:1rem">⚠️</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:.5rem">No se pudo cargar</div>
+        <div style="color:rgba(255,255,255,.5);font-size:13px;margin-bottom:1.5rem">${e.message}</div>
+        <button onclick="location.reload()" style="background:#5EEAD4;color:#1C1917;border:none;border-radius:20px;padding:8px 20px;font-size:13px;cursor:pointer;font-weight:600">Reintentar</button>
+      </div>`;
   }
-});
+}
 
-// Animate debt bar on load
-setTimeout(() => {
-  document.getElementById('debtBar').style.width = '24%';
-}, 300);
+function render(d) {
+  // Badge actualización
+  $('updateBadge').innerHTML = `⬤ ${d.meta.actualizado}`;
+  $('updateBadge').style.color = '#5EEAD4';
+
+  // Alertas
+  const ac = $('alertasContainer');
+  d.alertas.forEach(a => {
+    const cls = a.tipo==='danger'?'alert-danger':a.tipo==='warning'?'alert-warning':'alert-info';
+    ac.innerHTML += `<div class="alert-banner ${cls}"><div class="alert-text"><strong>${a.titulo}</strong>${a.detalle}</div></div>`;
+  });
+
+  // Periodo label
+  $('periodoLabel').textContent = `Resumen del período — ${d.meta.periodo_estado}`;
+
+  // KPIs
+  const kpis = [
+    {label:'Ingreso mensual estimado', val:fmt(d.resumen.ingreso_mensual), sub:'Salario quincenal × 2', color:'teal'},
+    {label:'Gastos en tarjeta', val:fmt(d.resumen.gasto_tarjeta_periodo), sub:`37 días · ${d.resumen.n_tickets} tickets`, color:'red'},
+    {label:'Saldo pendiente', val:fmt(d.resumen.saldo_pendiente), sub:'Pagar antes del 11-may', color:'amber'},
+    {label:'Potencial de ahorro', val:fmt(d.resumen.potencial_ahorro), sub:'Reduciendo gastos evitables', color:'green'},
+  ];
+  $('kpiGrid').innerHTML = kpis.map((k,i) => `
+    <div class="kpi-card ${k.color}" style="animation-delay:${i*.05}s">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value ${k.color}">${k.val}</div>
+      <div class="kpi-sub">${k.sub}</div>
+    </div>`).join('');
+
+  // Categorías
+  const maxMonto = Math.max(...d.gastos_categoria.map(c=>c.monto));
+  const totalGasto = d.gastos_categoria.reduce((s,c)=>s+c.monto,0);
+  const barColors = {necesario:'#0F766E',reducir:'#B91C1C',comprometido:'#D97706',
+                     eliminar:'#991B1B',fijo:'#78716C',evaluar:'#64748B',positivo:'#15803D'};
+  $('catList').innerHTML = d.gastos_categoria.map(c => `
+    <div class="cat-row">
+      <span class="cat-emoji">${c.emoji}</span>
+      <span class="cat-name">${c.cat}</span>
+      <div class="cat-bar-wrap"><div class="cat-bar-bg">
+        <div class="cat-bar-fill" style="width:${(c.monto/maxMonto*100).toFixed(0)}%;background:${barColors[c.tipo]||'#78716C'}"></div>
+      </div></div>
+      <span class="cat-amount">${fmt(c.monto)}</span>
+      <span class="cat-badge ${badgeClass(c.tipo)}">${badgeLabel(c.tipo)}</span>
+    </div>`).join('');
+
+  // Donut
+  const donutCtx = $('donutChart').getContext('2d');
+  new Chart(donutCtx, {
+    type:'doughnut',
+    data:{
+      labels: d.gastos_categoria.map(c=>c.cat),
+      datasets:[{
+        data: d.gastos_categoria.map(c=>c.monto),
+        backgroundColor:['#0F766E','#0D9488','#B91C1C','#DC2626','#15803D','#D97706','#EA580C','#C2410C','#9F1239','#78716C','#4B5563','#6366F1'],
+        borderWidth:2, borderColor:'#FFFDF9', hoverOffset:6
+      }]
+    },
+    options:{cutout:'68%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${fmt(ctx.parsed)} (${(ctx.parsed/totalGasto*100).toFixed(1)}%)`}}}}
+  });
+
+  const necesario = d.gastos_categoria.filter(c=>c.tipo==='necesario'||c.tipo==='fijo').reduce((s,c)=>s+c.monto,0);
+  const reducible = d.gastos_categoria.filter(c=>['reducir','eliminar'].includes(c.tipo)).reduce((s,c)=>s+c.monto,0);
+  const comprom   = d.gastos_categoria.filter(c=>c.tipo==='comprometido').reduce((s,c)=>s+c.monto,0);
+  $('donutLegend').innerHTML = [
+    {color:'#0F766E', label:'Gastos necesarios', val:(necesario/totalGasto*100).toFixed(1)+'%'},
+    {color:'#B91C1C', label:'Reducibles / evitables', val:(reducible/totalGasto*100).toFixed(1)+'%', red:true},
+    {color:'#D97706', label:'Comprometido (meses)', val:(comprom/totalGasto*100).toFixed(1)+'%'},
+  ].map(l=>`<div style="display:flex;align-items:center;gap:8px;font-size:12px">
+    <span style="width:10px;height:10px;border-radius:2px;background:${l.color};flex-shrink:0"></span>
+    <span style="flex:1;color:var(--ink-soft)">${l.label}</span>
+    <strong ${l.red?'style="color:var(--red)"':''}>${l.val}</strong>
+  </div>`).join('');
+  $('evitableBox').innerHTML = `<div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Gastos evitables este período</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--red);letter-spacing:-0.03em">${fmt(reducible)}</div>
+    <div style="font-size:12px;color:#991B1B;margin-top:2px">Ese dinero pudo ser ahorro o pago de deuda</div>`;
+
+  // OXXO categorías
+  const oxxo = d.oxxo_analisis;
+  const maxOxxo = Math.max(...oxxo.categorias.map(c=>c.monto));
+  $('oxxoCatList').innerHTML = `
+    <div style="margin-bottom:1rem;padding:.9rem;background:#FEF2F2;border-radius:10px;border:1px solid #FECACA">
+      <div style="font-size:11px;font-weight:700;color:#991B1B;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Total gastado en 6 meses</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:var(--red);letter-spacing:-0.03em">${fmt2(oxxo.total_6_meses)}</div>
+      <div style="font-size:12px;color:#991B1B">${d.resumen.n_tickets} tickets registrados</div>
+    </div>` +
+    oxxo.categorias.map(c=>`
+    <div class="cat-row">
+      <span class="cat-emoji">${c.cat.split(' ')[0]}</span>
+      <span class="cat-name">${c.cat.substring(c.cat.indexOf(' ')+1)}</span>
+      <div class="cat-bar-wrap"><div class="cat-bar-bg">
+        <div class="cat-bar-fill" style="width:${(c.monto/maxOxxo*100).toFixed(0)}%;background:${c.cat.includes('Tabaco')?'#B91C1C':'#D97706'}"></div>
+      </div></div>
+      <span class="cat-amount" style="${c.cat.includes('Tabaco')?'color:var(--red)':''}">${fmt(c.monto)}</span>
+      <span class="cat-badge ${c.cat.includes('Tabaco')?'badge-cut':'badge-warn'}">${c.pct.toFixed(1)}%</span>
+    </div>`).join('');
+
+  // Tabaco box
+  $('tabacoBox').innerHTML = `
+    <div class="tabaco-box">
+      <div class="tabaco-title">🚬 Lucky Strike — análisis 6 meses</div>
+      <div class="tabaco-grid">
+        <div class="tabaco-stat"><div class="val">${fmt(oxxo.tabaco_mensual)}</div><div class="lbl">Por mes</div></div>
+        <div class="tabaco-stat"><div class="val">${fmt(oxxo.tabaco_anual)}</div><div class="lbl">Por año</div></div>
+        <div class="tabaco-stat"><div class="val">20×</div><div class="lbl">Compras</div></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;background:#FEF2F2;border-radius:10px;padding:.9rem;margin-bottom:1rem;gap:8px">
+      <div style="text-align:center"><div style="font-size:11px;color:#991B1B">Dic 2025</div><div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--red)">${fmt(oxxo.precio_ls_dic2025)}</div></div>
+      <div style="color:var(--red);font-size:1.2rem">→ +20% →</div>
+      <div style="text-align:center"><div style="font-size:11px;color:#991B1B">Hoy</div><div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--red)">${fmt(oxxo.precio_ls_actual)}</div></div>
+    </div>
+    ${oxxo.sin_ls_hoy ? `<div style="padding:.9rem;background:var(--green-light);border-radius:10px;border:1px solid #BBF7D0;font-size:13px;color:#166534">
+      <strong>✅ Hoy sin Lucky Strike</strong> — primer ticket OXXO sin tabaco registrado. Si se mantiene: ${fmt(oxxo.tabaco_mensual)}/mes libres → ${fmt(oxxo.tabaco_anual)}/año para invertir.
+    </div>` : ''}
+    <div style="margin-top:1rem;padding:.9rem;background:var(--teal-light);border-radius:10px;font-size:13px;color:#134E4A">
+      <strong>Si ese dinero fuera a inversión al 10% anual:</strong><br>En 5 años → <strong>${fmt(oxxo.tabaco_anual*5*1.28)}</strong> · En 10 años → <strong>${fmt(oxxo.tabaco_anual*10*1.59)}</strong>
+    </div>`;
+
+  // OXXO top tabla
+  const medals = ['🥇','🥈','🥉'];
+  $('oxxoBody').innerHTML = oxxo.top_productos.map((p,i)=>`
+    <tr style="${i===0?'background:#FEF2F2':''}">
+      <td><span class="${i<3?'rank-'+(i+1):'rank-num'}">${medals[i]||i+1}</span></td>
+      <td style="font-weight:${i<3?600:400}">${p.nombre}</td>
+      <td style="text-align:center;font-weight:700;color:${i===0?'var(--red)':'var(--ink)'}">${p.veces}×</td>
+      <td style="text-align:right;font-weight:700;color:${i===0?'var(--red)':'var(--amber)'}">${fmt2(p.total)}</td>
+      <td style="text-align:right;color:var(--ink-faint)">${fmt2(p.prom)}</td>
+      <td style="font-size:12px;color:var(--ink-faint)">${p.cat}</td>
+    </tr>`).join('');
+
+  $('oxxoInsight').innerHTML = `
+    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:.85rem;font-size:13px;color:#991B1B;border-left:3px solid var(--red)">
+      <strong>🚬 El tabaco domina:</strong> ${oxxo.tabaco_pct.toFixed(1)}% de todo lo gastado en OXXO es un solo producto comprado cada ~9 días.
+    </div>
+    <div style="background:#FFF7ED;border:1px solid #FDE68A;border-radius:10px;padding:.85rem;font-size:13px;color:#92400E;border-left:3px solid var(--gold)">
+      <strong>🥤 Bebidas en OXXO:</strong> Cada botella aquí cuesta 40–60% más que en Costco. Llevar agua de casa elimina ~$200/mes.
+    </div>`;
+
+  // Gasolina
+  const gas = d.gasolina;
+  $('gasolinaList').innerHTML = `<div style="display:flex;justify-content:space-between;margin-bottom:1rem;padding:.8rem;background:var(--teal-light);border-radius:10px;border:1px solid #99F6E4">
+    <div><div style="font-size:11px;color:var(--teal);font-weight:600;text-transform:uppercase">Precio actual/lt</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal)">${fmt2(gas.precio_actual_lt)}</div></div>
+    <div style="text-align:right"><div style="font-size:11px;color:var(--teal);font-weight:600;text-transform:uppercase">Total período</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal)">${fmt(gas.total_periodo)}</div></div>
+  </div>` +
+  gas.tickets.map(t=>`<div class="fuel-stat">
+    <span style="font-size:13px;color:var(--ink-faint)">${t.fecha}</span>
+    <span style="font-size:13px;font-weight:500">${t.estacion}</span>
+    ${t.litros?`<span style="font-size:12px;color:var(--ink-faint)">${t.litros.toFixed(1)}L @ ${fmt2(t.precio_lt)}/L</span>`:'<span></span>'}
+    <span style="font-weight:700;color:var(--teal)">${fmt2(t.total)}</span>
+  </div>`).join('');
+
+  const gasCtx = $('gasolinaChart').getContext('2d');
+  new Chart(gasCtx,{type:'bar',data:{
+    labels:gas.tickets.map(t=>t.fecha),
+    datasets:[{label:'Gasto ($)',data:gas.tickets.map(t=>t.total),backgroundColor:'rgba(15,118,110,.7)',borderRadius:4}]
+  },options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{ticks:{callback:v=>'$'+v/1000+'k',font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}}}}});
+
+  // Plan
+  $('planList').innerHTML = d.plan_meses.map(p=>`
+    <div class="plan-row">
+      <div class="plan-dot dot-${p.color}">${p.numero}</div>
+      <div>
+        <div class="plan-mes">${p.mes}</div>
+        <div class="plan-accion">${p.accion}</div>
+        <div class="plan-meta">→ ${p.meta}</div>
+      </div>
+    </div>`).join('');
+
+  // Growth chart
+  const proy = d.proyeccion_12m;
+  const growthCtx = $('growthChart').getContext('2d');
+  new Chart(growthCtx,{type:'bar',data:{
+    labels:proy.meses,
+    datasets:[
+      {label:'Deuda',data:proy.deuda,backgroundColor:'rgba(185,28,28,.75)',borderRadius:4},
+      {label:'Fondo emergencia',data:proy.ahorro,backgroundColor:'rgba(15,118,110,.75)',borderRadius:4},
+      {label:'Inversión',data:proy.inversion,backgroundColor:'rgba(214,119,6,.75)',borderRadius:4},
+    ]
+  },options:{responsive:true,interaction:{mode:'index'},plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}}},
+    scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>'$'+v/1000+'k',font:{size:11}}}}}});
+
+  // Footer
+  $('footerUpdate').textContent = `📅 Actualizado: ${d.meta.actualizado} · ${d.resumen.n_tickets} tickets registrados`;
+
+  // Show content
+  $('appContent').style.display='block';
+  $('appFooter').style.display='block';
+  setTimeout(()=>{ $('loader').classList.add('hide'); }, 600);
+}
+
+loadAndRender();
 </script>
 </body>
 </html>
