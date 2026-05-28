@@ -1,23 +1,25 @@
 {
   "meta": {
-    "actualizado": "25/05/2026",
+    "actualizado": "28/05/2026",
     "periodo_estado": "16 Mar – 21 Abr 2026",
     "titular": "Familia Astudillo",
-    "version": "3.0"
+    "version": "3.0",
+    "instrucciones_version": "1.0",
+    "nota": "Archivo autoinstruccional — adjuntar en chat nuevo para continuar sin contexto"
   },
   "resumen": {
     "ingreso_mensual": 10000,
-    "gasto_tarjeta_periodo": 21790.64,
+    "gasto_tarjeta_periodo": 21915.14,
     "saldo_pendiente": 9115.16,
     "potencial_ahorro": 3200,
-    "total_tickets_productos": 5987.02,
-    "n_tickets": 72
+    "total_tickets_productos": 6111.52,
+    "n_tickets": 74
   },
   "gastos_categoria": [
     {
       "cat": "Despensa / Súper",
       "emoji": "🛒",
-      "monto": 6638,
+      "monto": 6677.5,
       "tipo": "necesario"
     },
     {
@@ -35,7 +37,7 @@
     {
       "cat": "OXXO / Conveniencia",
       "emoji": "🏪",
-      "monto": 1902,
+      "monto": 1937.0,
       "tipo": "reducir"
     },
     {
@@ -65,7 +67,7 @@
     {
       "cat": "Caffenio (café)",
       "emoji": "☕",
-      "monto": 850,
+      "monto": 900.0,
       "tipo": "eliminar"
     },
     {
@@ -153,9 +155,9 @@
       },
       {
         "nombre": "SABRITAS (varios)",
-        "veces": 8,
-        "total": 371,
-        "prom": 46.38,
+        "veces": 9,
+        "total": 406.0,
+        "prom": 45.11,
         "cat": "🍿 Botanas"
       },
       {
@@ -404,6 +406,190 @@
       "tipo": "info",
       "titulo": "⛽ Gasolina hoy: $970 — 39.6L a $24.49/L",
       "detalle": "Mobil Aguajitos, Cabo San Lucas. Es el llenado más documentado hasta ahora."
+    },
+    {
+      "tipo": "warning",
+      "titulo": "☕ Caffenio: recarga 0 el 28-May — plan dice ELIMINAR",
+      "detalle": "Se registró una recarga de $50 en Caffenio hoy 28/05/2026 pese al plan de eliminarlo en Mayo. Acumulado Caffenio Mayo: al menos $50."
+    }
+  ],
+  "_instrucciones_claude": {
+    "titulo": "SISTEMA DE CONTROL FINANCIERO PERSONAL — FAMILIA ASTUDILLO",
+    "leer_primero": "Este archivo es la memoria del sistema financiero personal de Raul Astudillo B. Al cargarlo en un chat nuevo, Claude debe leerlo completo y continuar exactamente donde se dejó, sin pedir contexto adicional.",
+    "quien_es": {
+      "titular": "Raul Astudillo B.",
+      "ubicacion": "Los Cabos, Baja California Sur",
+      "familia": "Esposa + hijo con autismo (monitor/terapeuta)",
+      "salario": "Quincenal ~$5,000 netos (~$10,000/mes)",
+      "tarjeta_principal": "Costco Banamex CAT 81.5% — tarjeta de crédito más cara del portafolio"
+    },
+    "archivos_del_sistema": {
+      "excel_control": "Control_Financiero_Personal.xlsx — presupuesto, transacciones, plan ahorro",
+      "excel_tickets": "Control_Con_Tickets.xlsx — historial de productos por ticket",
+      "excel_plan": "Plan_Financiero_Raul.xlsx — diagnóstico y proyección 6 meses",
+      "dashboard_web": "https://ruls420.github.io/Finanzas-Familia-AT/",
+      "datos_json": "datos.json — este archivo, es la fuente de verdad del dashboard"
+    },
+    "protocolo_tickets": {
+      "paso_1": "Usuario adjunta este datos.json + fotos/capturas de tickets nuevos",
+      "paso_2": "Claude lee cada ticket: extrae fecha, tienda, productos, cantidades, precios",
+      "paso_3": "Claude categoriza automáticamente cada producto",
+      "paso_4": "Claude actualiza datos.json con los nuevos movimientos",
+      "paso_5": "Claude entrega el datos.json actualizado",
+      "paso_6": "Usuario sube datos.json a GitHub → dashboard actualizado en segundos",
+      "tiendas_conocidas": [
+        "Costco Los Cabos (Sucursal 724)",
+        "OXXO San Bernabé",
+        "Soriana Los Cabos",
+        "Super Ley",
+        "Mobil Aguajitos"
+      ],
+      "nota": "Si el usuario solo manda tickets sin el JSON, igual procesarlos y avisar que el historial previo no está disponible"
+    },
+    "protocolo_estado_cuenta": {
+      "descripcion": "El usuario tiene tarjeta Costco Banamex y puede subir el PDF del estado de cuenta",
+      "como_procesarlo": "Leer el PDF, extraer todos los movimientos de la sección 'CARGOS ABONOS Y COMPRAS REGULARES', identificar fecha de operación, descripción y monto, categorizarlos y actualizar datos.json",
+      "banco": "Banamex",
+      "tarjeta": "4037 **** **** 7204 (Costco Banamex VISA)"
+    },
+    "categorias_conocidas": {
+      "Despensa/Súper": [
+        "COSTCO LOS CABOS",
+        "SORIANA",
+        "WALMART",
+        "CHEDRAUI",
+        "CARNES SUPREMAS"
+      ],
+      "Transporte": [
+        "COSTCO GAS",
+        "ESTACION 2864",
+        "DIESGAS",
+        "GASOL TRANSP",
+        "GASO AEROPUERTO",
+        "MOBIL"
+      ],
+      "Comida rápida": [
+        "CARLS JR",
+        "BURGER KING",
+        "LITTLE CAESARS",
+        "REST PEZGALLO",
+        "MERPAGO*TACOS"
+      ],
+      "OXXO/Conveniencia": [
+        "OXXO",
+        "OXXOSAN"
+      ],
+      "Caffenio": [
+        "OPENPAY*CAFFENIO",
+        "CAFFENIO"
+      ],
+      "Salud": [
+        "FARMACIAS SIMILARES",
+        "MERPAGO*DENTAL",
+        "MERPAGO*RICARDO"
+      ],
+      "Entretenimiento": [
+        "NETFLIX",
+        "SPOTIFY",
+        "DISNEY"
+      ],
+      "Comunicación": [
+        "TELCEL",
+        "MOVISTAR"
+      ],
+      "Ropa/Personal": [
+        "SHEIN",
+        "LIVERPOOL",
+        "ZARA"
+      ],
+      "Compras online": [
+        "AMAZON",
+        "EBW GENERAL"
+      ],
+      "Tabaco": [
+        "LUCKY STRIKE",
+        "MARLBORO"
+      ],
+      "Bebidas OXXO": [
+        "COCA-COLA",
+        "PEPSI",
+        "TOPOCHICO",
+        "PACIFICO",
+        "RED BULL"
+      ],
+      "Botanas OXXO": [
+        "SABRITAS",
+        "DORITOS",
+        "TAKIS",
+        "CHEETOS",
+        "GANSITO"
+      ],
+      "Abono/Ingreso": [
+        "SU ABONO",
+        "NOMINA",
+        "DEPOSITO"
+      ]
+    },
+    "hallazgos_clave": {
+      "fuga_1": "Tabaco (Lucky Strike) — $1,902 en 6 meses solo en OXXO. $3,804/año. El 25-May-2026 fue la primera vez sin cigarros en OXXO.",
+      "fuga_2": "Caffenio — $850/mes en café de máquina = $10,200/año",
+      "fuga_3": "OXXO — 37+ visitas, $5,017 en 6 meses. 38% es tabaco.",
+      "fuga_4": "Comida rápida — 9+ salidas por período",
+      "deuda": "Saldo tarjeta Costco Banamex: $9,115 al 21-Abr-2026. CAT 81.5%",
+      "inversion_activa": "GBM Forjadores $161/mes — mantener y aumentar"
+    },
+    "plan_activo": {
+      "mayo_2026": "Eliminar Caffenio. Máx 2 salidas comer/semana. Cero OXXO. Tarjeta en $0.",
+      "junio_2026": "Liquidar saldo $9,115. Abrir CETES Directo $500.",
+      "jul_sep_2026": "Fondo emergencia $500/quincena. GBM → $500/mes.",
+      "oct_2026": "Costco meses termina → $1,200 libres → inversión"
+    },
+    "como_actualizar_dashboard": {
+      "paso_1": "Raúl adjunta datos.json + tickets nuevos en el chat",
+      "paso_2": "Claude extrae y actualiza datos.json",
+      "paso_3": "Raúl descarga datos.json",
+      "paso_4": "Raúl va a github.com/ruls420/Finanzas-Familia-AT",
+      "paso_5": "Add file → Upload files → reemplaza datos.json → Commit",
+      "paso_6": "En 30 segundos el favorito de la esposa muestra los datos nuevos"
+    }
+  },
+  "tickets_mayo_2026": [
+    {
+      "fecha": "28/05/2026",
+      "tienda": "PAMAVA951",
+      "folio": "121743",
+      "items": [
+        {
+          "producto": "Tortilla Harina 10pz",
+          "cant": 1,
+          "precio": 39.5,
+          "cat": "Despensa/Súper"
+        },
+        {
+          "producto": "Sabritas Sal BZZ 74g",
+          "cant": 1,
+          "precio": 35.0,
+          "cat": "Botanas OXXO"
+        }
+      ],
+      "total": 74.5,
+      "pago": "Tarjeta crédito Banamex ****7204"
+    },
+    {
+      "fecha": "28/05/2026",
+      "tienda": "OPENPAY*CAFFENIO",
+      "descripcion": "Recarga Caffenio - Costco Banamex Adicional 525",
+      "auto": "387608",
+      "items": [
+        {
+          "producto": "Recarga Caffenio",
+          "cant": 1,
+          "precio": 50.0,
+          "cat": "Caffenio"
+        }
+      ],
+      "total": 50.0,
+      "pago": "Costco Banamex Adicional"
     }
   ]
 }
