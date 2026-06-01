@@ -1,7 +1,7 @@
 {
   "meta": {
-    "actualizado": "28/05/2026",
-    "periodo_estado": "16 Mar – 21 Abr 2026",
+    "actualizado": "01/06/2026",
+    "periodo_estado": "22-Abr al 21-May-2026",
     "titular": "Familia Astudillo",
     "version": "3.0",
     "instrucciones_version": "1.0",
@@ -9,89 +9,101 @@
   },
   "resumen": {
     "ingreso_mensual": 10000,
-    "gasto_tarjeta_periodo": 21915.14,
-    "saldo_pendiente": 9115.16,
+    "gasto_tarjeta_periodo": 27345.01,
+    "saldo_pendiente": 21145.01,
     "potencial_ahorro": 3200,
-    "total_tickets_productos": 6111.52,
-    "n_tickets": 74
+    "total_tickets_productos": 7046.52,
+    "n_tickets": 80,
+    "total_abonos_periodo": 15315.16,
+    "saldo_anterior": 9115.16,
+    "fecha_limite_pago": "10/06/2026",
+    "credito_disponible": 9126.0,
+    "saldo_a_meses": 7728.57,
+    "saldo_deudor_total": 28873.58
   },
   "gastos_categoria": [
     {
       "cat": "Despensa / Súper",
       "emoji": "🛒",
-      "monto": 6677.5,
-      "tipo": "necesario"
-    },
-    {
-      "cat": "Gasolina",
-      "emoji": "⛽",
-      "monto": 5211,
+      "monto": 12132.23,
       "tipo": "necesario"
     },
     {
       "cat": "Comida rápida / Rest.",
       "emoji": "🍔",
-      "monto": 2636,
+      "monto": 4451.26,
       "tipo": "reducir"
+    },
+    {
+      "cat": "Transporte (gasolina)",
+      "emoji": "⛽",
+      "monto": 3715.19,
+      "tipo": "necesario"
     },
     {
       "cat": "OXXO / Conveniencia",
       "emoji": "🏪",
-      "monto": 1937.0,
+      "monto": 1962.8,
       "tipo": "reducir"
+    },
+    {
+      "cat": "CFE (luz)",
+      "emoji": "💡",
+      "monto": 1900.0,
+      "tipo": "necesario"
     },
     {
       "cat": "Salud",
       "emoji": "💊",
-      "monto": 1579,
+      "monto": 1070.2,
       "tipo": "necesario"
-    },
-    {
-      "cat": "Costco a meses (cuota)",
-      "emoji": "📆",
-      "monto": 1200,
-      "tipo": "comprometido"
-    },
-    {
-      "cat": "Compras online",
-      "emoji": "🛍️",
-      "monto": 893,
-      "tipo": "reducir"
-    },
-    {
-      "cat": "Ropa / SHEIN",
-      "emoji": "👗",
-      "monto": 855,
-      "tipo": "reducir"
     },
     {
       "cat": "Caffenio (café)",
       "emoji": "☕",
-      "monto": 900.0,
-      "tipo": "eliminar"
+      "monto": 800.0,
+      "tipo": "reducir"
     },
     {
-      "cat": "Celular Telcel",
-      "emoji": "📱",
-      "monto": 479,
-      "tipo": "fijo"
+      "cat": "Costco a meses (cuotas)",
+      "emoji": "📆",
+      "monto": 1785.81,
+      "tipo": "comprometido"
     },
     {
-      "cat": "Netflix",
+      "cat": "Entretenimiento",
       "emoji": "🎬",
-      "monto": 329,
+      "monto": 369.0,
       "tipo": "evaluar"
     },
     {
-      "cat": "GBM / Inversión",
-      "emoji": "💰",
-      "monto": 161,
-      "tipo": "positivo"
+      "cat": "Comunicación (Telcel)",
+      "emoji": "📱",
+      "monto": 279.0,
+      "tipo": "fijo"
+    },
+    {
+      "cat": "Compras/Ferretería",
+      "emoji": "🛍️",
+      "monto": 585.34,
+      "tipo": "reducir"
+    },
+    {
+      "cat": "Servicios digitales",
+      "emoji": "💻",
+      "monto": 60.0,
+      "tipo": "evaluar"
+    },
+    {
+      "cat": "Tickets efectivo",
+      "emoji": "🧾",
+      "monto": 1059.5,
+      "tipo": "reducir"
     }
   ],
   "oxxo_analisis": {
-    "total_6_meses": 5017.8,
-    "n_visitas": 37,
+    "total_6_meses": 6980.6,
+    "n_visitas": 50,
     "tabaco_total": 1902,
     "tabaco_pct": 37.9,
     "tabaco_mensual": 317,
@@ -197,7 +209,9 @@
         "precio": 0,
         "nota": "Sin LS hoy ✅"
       }
-    ]
+    ],
+    "nota_mayo": "Mayo: 13 visitas OXXO, $1,962.80. Lucky Strike no confirmado en este período.",
+    "actualizado": "01/06/2026"
   },
   "gasolina": {
     "tickets": [
@@ -249,10 +263,28 @@
         "litros": 39.609,
         "precio_lt": 24.49,
         "total": 970.02
+      },
+      {
+        "fecha": "02/05/2026",
+        "rs": "Raul",
+        "estacion": "Gasol Oper 2020",
+        "total": 1010.03
+      },
+      {
+        "fecha": "10/05/2026",
+        "rs": "Raul",
+        "estacion": "Gas T5 Los Cabos",
+        "total": 934.71
+      },
+      {
+        "fecha": "17/05/2026",
+        "rs": "Raul",
+        "estacion": "Costco Gas",
+        "total": 935.6
       }
     ],
     "precio_actual_lt": 24.49,
-    "total_periodo": 5211
+    "total_periodo": 8926.19
   },
   "costco_tickets": [
     {
@@ -294,15 +326,57 @@
         "Agua 500ml",
         "Refresco 600ml (Food Court)"
       ]
+    },
+    {
+      "fecha": "26/05/2026",
+      "total": 535.0,
+      "articulos": 6,
+      "items_clave": [
+        "Planta Citronela",
+        "Planta Menta",
+        "Peat Moss",
+        "Sustrato Perlita",
+        "Planta Escudo Persa",
+        "Planta Crisantemo"
+      ],
+      "tienda": "Home Depot Los Cabos"
+    },
+    {
+      "fecha": "28/05/2026",
+      "total": 74.5,
+      "articulos": 2,
+      "items_clave": [
+        "Tortilla Harina 10pz",
+        "Sabritas Sal BZZ 74g"
+      ],
+      "tienda": "PAMAVA951 (tienda local)"
+    },
+    {
+      "fecha": "28/05/2026",
+      "total": 50.0,
+      "articulos": 1,
+      "items_clave": [
+        "Recarga Caffenio"
+      ],
+      "tienda": "OPENPAY*CAFFENIO"
+    },
+    {
+      "fecha": "31/05/2026",
+      "total": 400.0,
+      "articulos": 1,
+      "items_clave": [
+        "Super combo"
+      ],
+      "tienda": "Asadero Betsaida"
     }
   ],
   "plan_meses": [
     {
-      "mes": "Mayo 2026",
+      "mes": "Junio 2026",
       "color": "red",
       "numero": 1,
-      "accion": "Elimina Caffenio. Máx 2 salidas a comer. Cero OXXO salvo emergencia.",
-      "meta": "Reducir gasto mensual a ~$8,500"
+      "accion": "Pagar $21,145 antes del 10-Jun (fecha límite). Eliminar Caffenio definitivamente. Máx 2 salidas comer/semana. Tarjeta en $0 al corte.",
+      "meta": "Reducir gasto < $12,000 · Sin intereses"
     },
     {
       "mes": "Junio 2026",
@@ -349,11 +423,11 @@
       "Abr"
     ],
     "deuda": [
-      7615,
-      5915,
-      4215,
-      2515,
-      815,
+      21145,
+      15000,
+      9000,
+      3000,
+      0,
       0,
       0,
       0,
@@ -394,23 +468,33 @@
   "alertas": [
     {
       "tipo": "danger",
-      "titulo": "🚬 Tabaco: $1,902 en 6 meses solo en OXXO",
-      "detalle": "Lucky Strike subió de $82 → $99 en enero (+20%). Proyección anual: $3,804. Hoy por primera vez no hubo cigarros en el ticket OXXO ✅"
+      "titulo": "💳 Saldo deudor total: $28,873 — el más alto registrado",
+      "detalle": "Saldo regulares $21,145 + Costco a meses $7,728. Pagar antes del 10-Jun para no generar intereses. El saldo creció $19,758 respecto al período anterior."
+    },
+    {
+      "tipo": "danger",
+      "titulo": "🍔 Comida rápida: $4,451 en un solo período",
+      "detalle": "REST Barrio del Tango $719, REST La Litreria $468, Tacos 22 $290, China Zhen Wei $405, Vertiche $710, Rappi $797, Asadero Betsaida $400. 9+ salidas — el doble vs período anterior."
     },
     {
       "tipo": "warning",
-      "titulo": "💳 Saldo pendiente tarjeta: $9,115",
-      "detalle": "CAT 81.5%. Cada mes que no se liquida genera ~$440 en intereses. Prioridad máxima."
+      "titulo": "🏪 OXXO: 13 visitas en Mayo, $1,962",
+      "detalle": "Patrón sin cambio. $1,962 en un período de 30 días = $65/día promedio en tiendas de conveniencia."
+    },
+    {
+      "tipo": "warning",
+      "titulo": "☕ Caffenio: $800 en Mayo (6 recargas)",
+      "detalle": "Sigue siendo una fuga constante. $250+$50+$250+$50+$150+$50. El plan era eliminarlo en Mayo."
+    },
+    {
+      "tipo": "warning",
+      "titulo": "🌱 Home Depot $535 en plantas/jardín",
+      "detalle": "Compra de 4 plantas + sustrato en efectivo (26-May). No crítico pero es gasto no esencial."
     },
     {
       "tipo": "info",
-      "titulo": "⛽ Gasolina hoy: $970 — 39.6L a $24.49/L",
-      "detalle": "Mobil Aguajitos, Cabo San Lucas. Es el llenado más documentado hasta ahora."
-    },
-    {
-      "tipo": "warning",
-      "titulo": "☕ Caffenio: recarga 0 el 28-May — plan dice ELIMINAR",
-      "detalle": "Se registró una recarga de $50 en Caffenio hoy 28/05/2026 pese al plan de eliminarlo en Mayo. Acumulado Caffenio Mayo: al menos $50."
+      "titulo": "✅ Abonos realizados: $15,315 en el período",
+      "detalle": "8 abonos parciales durante el mes: $95, $2,000, $5,000, $2,000, $400, $500, $300, $5,000. Buen hábito de abonos frecuentes aunque no alcanzaron a cubrir los cargos."
     }
   ],
   "_instrucciones_claude": {
@@ -553,43 +637,14 @@
       "paso_6": "En 30 segundos el favorito de la esposa muestra los datos nuevos"
     }
   },
-  "tickets_mayo_2026": [
+  "historial_estados": [
     {
-      "fecha": "28/05/2026",
-      "tienda": "PAMAVA951",
-      "folio": "121743",
-      "items": [
-        {
-          "producto": "Tortilla Harina 10pz",
-          "cant": 1,
-          "precio": 39.5,
-          "cat": "Despensa/Súper"
-        },
-        {
-          "producto": "Sabritas Sal BZZ 74g",
-          "cant": 1,
-          "precio": 35.0,
-          "cat": "Botanas OXXO"
-        }
-      ],
-      "total": 74.5,
-      "pago": "Tarjeta crédito Banamex ****7204"
-    },
-    {
-      "fecha": "28/05/2026",
-      "tienda": "OPENPAY*CAFFENIO",
-      "descripcion": "Recarga Caffenio - Costco Banamex Adicional 525",
-      "auto": "387608",
-      "items": [
-        {
-          "producto": "Recarga Caffenio",
-          "cant": 1,
-          "precio": 50.0,
-          "cat": "Caffenio"
-        }
-      ],
-      "total": 50.0,
-      "pago": "Costco Banamex Adicional"
+      "periodo": "22-Abr al 21-May-2026",
+      "total_cargos": 27345.01,
+      "total_abonos": 15315.16,
+      "saldo_pendiente": 21145.01,
+      "fecha_limite": "10/06/2026",
+      "n_movimientos": 70
     }
   ]
 }
