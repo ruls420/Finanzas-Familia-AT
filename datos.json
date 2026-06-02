@@ -1,17 +1,19 @@
 {
   "meta": {
-    "actualizado": "01/06/2026",
+    "actualizado": "02/06/2026",
     "periodo_estado": "22-Abr al 21-May-2026",
     "titular": "Familia Astudillo",
     "version": "3.0",
     "instrucciones_version": "1.0",
-    "nota": "Archivo autoinstruccional — adjuntar en chat nuevo para continuar sin contexto"
+    "nota": "Archivo autoinstruccional — adjuntar en chat nuevo para continuar sin contexto",
+    "sincronizado_desde_excel": true,
+    "excel_fuente": "Control_Financiero_Limpio.xlsx"
   },
   "resumen": {
-    "ingreso_mensual": 10000,
+    "ingreso_mensual": 31000,
     "gasto_tarjeta_periodo": 27345.01,
     "saldo_pendiente": 21145.01,
-    "potencial_ahorro": 3200,
+    "potencial_ahorro": 4650.0,
     "total_tickets_productos": 7046.52,
     "n_tickets": 80,
     "total_abonos_periodo": 15315.16,
@@ -19,7 +21,18 @@
     "fecha_limite_pago": "10/06/2026",
     "credito_disponible": 9126.0,
     "saldo_a_meses": 7728.57,
-    "saldo_deudor_total": 28873.58
+    "saldo_deudor_total": 28873.58,
+    "ingreso_quincenal": 15500,
+    "total_gastos_fijos": 17328,
+    "meta_ahorro_pct": 0.1,
+    "meta_ahorro_monto": 3100.0,
+    "meta_inversion_pct": 0.05,
+    "meta_inversion_monto": 1550.0,
+    "dinero_libre_variable": 9022.0,
+    "fondo_emergencia_meta": 51984,
+    "n_movimientos": 115,
+    "total_cargos_real": 49135.65,
+    "total_abonos_real": 27990.64
   },
   "gastos_categoria": [
     {
@@ -635,6 +648,34 @@
       "paso_4": "Raúl va a github.com/ruls420/Finanzas-Familia-AT",
       "paso_5": "Add file → Upload files → reemplaza datos.json → Commit",
       "paso_6": "En 30 segundos el favorito de la esposa muestra los datos nuevos"
+    },
+    "protocolo_sincronizacion": {
+      "descripcion": "Cuando el usuario mande el Excel + datos.json, leer estas celdas y actualizar el JSON",
+      "hoja": "⚙️ Configuración",
+      "celdas_clave": {
+        "C6": "salario_quincenal → resumen.ingreso_quincenal y resumen.ingreso_mensual (×2)",
+        "C8": "meta_ahorro_pct → resumen.meta_ahorro_pct y resumen.meta_ahorro_monto",
+        "C9": "meta_inversion_pct → resumen.meta_inversion_pct y resumen.meta_inversion_monto",
+        "C10": "meses_emergencia → calcular resumen.fondo_emergencia_meta = C26 × C10",
+        "C14": "Luz CFE",
+        "C15": "Internet",
+        "C16": "Gas",
+        "C17": "Monitor/Terapeuta hijo",
+        "C18": "Gasolina fijo",
+        "C19": "Renta/Hipoteca",
+        "C20": "Agua",
+        "C21": "Seguro Coche",
+        "C22": "Celular",
+        "C23": "Streaming/Suscripciones",
+        "C24": "Despensa/Súper",
+        "C25": "Otros fijos",
+        "C26": "TOTAL GASTOS FIJOS (suma automática)"
+      },
+      "hoja_transacciones": "📝 Transacciones",
+      "columnas_tx": {
+        "E": "Cargo ($) — sumar para total_cargos_real",
+        "F": "Abono ($) — sumar para total_abonos_real"
+      }
     }
   },
   "historial_estados": [
@@ -646,5 +687,30 @@
       "fecha_limite": "10/06/2026",
       "n_movimientos": 70
     }
-  ]
+  ],
+  "gastos_fijos_config": {
+    "descripcion": "Extraído de hoja ⚙️ Configuración del Excel",
+    "celdas_referencia": {
+      "salario_quincenal": "C6",
+      "meta_ahorro_pct": "C8",
+      "meta_inversion_pct": "C9",
+      "meses_emergencia": "C10",
+      "total_fijos": "C26 (SUM C14:C25)"
+    },
+    "detalle": {
+      "Luz (CFE)": 1000,
+      "Internet": 249,
+      "Gas": 430,
+      "Monitor/Terapeuta": 4000,
+      "Gasolina fijo": 2000,
+      "Renta/Hipoteca": 1000,
+      "Agua": 80,
+      "Seguro Coche": 700,
+      "Celular": 720,
+      "Streaming": 349,
+      "Despensa/Súper": 5000,
+      "Otros fijos": 1800
+    },
+    "total": 17328
+  }
 }
