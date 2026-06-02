@@ -7,7 +7,13 @@
     "instrucciones_version": "1.0",
     "nota": "Archivo autoinstruccional — adjuntar en chat nuevo para continuar sin contexto",
     "sincronizado_desde_excel": true,
-    "excel_fuente": "Control_Financiero_Limpio.xlsx"
+    "excel_fuente": "Control_Financiero_Limpio.xlsx",
+    "correcciones": [
+      {
+        "fecha": "02/06/2026",
+        "descripcion": "Vertiche 226 San Jose reclasificado de Comida rápida → Ropa/Personal ($709.96). Saldo anterior Mayo corregido a $0.00 (fue pagado en su totalidad)."
+      }
+    ]
   },
   "resumen": {
     "ingreso_mensual": 31000,
@@ -17,7 +23,7 @@
     "total_tickets_productos": 7046.52,
     "n_tickets": 80,
     "total_abonos_periodo": 15315.16,
-    "saldo_anterior": 9115.16,
+    "saldo_anterior": 0.0,
     "fecha_limite_pago": "10/06/2026",
     "credito_disponible": 9126.0,
     "saldo_a_meses": 7728.57,
@@ -32,7 +38,8 @@
     "fondo_emergencia_meta": 51984,
     "n_movimientos": 115,
     "total_cargos_real": 49135.65,
-    "total_abonos_real": 27990.64
+    "total_abonos_real": 27990.64,
+    "saldo_anterior_nota": "Pagado en su totalidad — $0.00 adeudo al inicio del período Mayo"
   },
   "gastos_categoria": [
     {
@@ -44,7 +51,7 @@
     {
       "cat": "Comida rápida / Rest.",
       "emoji": "🍔",
-      "monto": 4451.26,
+      "monto": 3741.3,
       "tipo": "reducir"
     },
     {
@@ -111,6 +118,12 @@
       "cat": "Tickets efectivo",
       "emoji": "🧾",
       "monto": 1059.5,
+      "tipo": "reducir"
+    },
+    {
+      "cat": "Ropa / Personal",
+      "emoji": "👗",
+      "monto": 709.96,
       "tipo": "reducir"
     }
   ],
@@ -482,7 +495,7 @@
     {
       "tipo": "danger",
       "titulo": "💳 Saldo deudor total: $28,873 — el más alto registrado",
-      "detalle": "Saldo regulares $21,145 + Costco a meses $7,728. Pagar antes del 10-Jun para no generar intereses. El saldo creció $19,758 respecto al período anterior."
+      "detalle": "Saldo regulares $21,145 + Costco a meses $7,728. El período anterior fue cubierto en su totalidad ($0.00 adeudo inicial). El saldo actual es 100% nuevo de este período. Pagar antes del 10-Jun para no generar intereses."
     },
     {
       "tipo": "danger",
@@ -685,7 +698,9 @@
       "total_abonos": 15315.16,
       "saldo_pendiente": 21145.01,
       "fecha_limite": "10/06/2026",
-      "n_movimientos": 70
+      "n_movimientos": 70,
+      "saldo_anterior": 0.0,
+      "nota": "Período inicia en $0.00 — saldo anterior cubierto al 100%"
     }
   ],
   "gastos_fijos_config": {
