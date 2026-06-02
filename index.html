@@ -329,7 +329,7 @@ function render(d) {
   const kpis = [
     {label:'Ingreso mensual estimado', val:fmt(d.resumen.ingreso_mensual), sub:'Salario quincenal × 2', color:'teal'},
     {label:'Gastos en tarjeta', val:fmt(d.resumen.gasto_tarjeta_periodo), sub:`37 días · ${d.resumen.n_tickets} tickets`, color:'red'},
-    {label:'Saldo pendiente', val:fmt(d.resumen.saldo_pendiente), sub:'Pagar antes del 11-may', color:'amber'},
+    {label:'Saldo pendiente', val:fmt(d.resumen.saldo_pendiente), sub:'Pagar antes del '+(d.resumen.fecha_limite_pago||'10/06/2026'), color:'amber'},
     {label:'Potencial de ahorro', val:fmt(d.resumen.potencial_ahorro), sub:'Reduciendo gastos evitables', color:'green'},
   ];
   $('kpiGrid').innerHTML = kpis.map((k,i) => `
