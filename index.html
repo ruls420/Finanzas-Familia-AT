@@ -244,6 +244,24 @@ canvas{max-height:240px}
     </div>
   </div>
 
+  <!-- Inversión -->
+  <p class="section-label">📈 Plan de inversión — CETES Directo + GBM</p>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><span>💰</span> Situación actual + próximos pasos</div>
+      <div id="inversionActual"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span>📊</span> Comparativa de instrumentos</div>
+      <div id="inversionTabla"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:1.25rem">
+    <div class="card-title"><span>📈</span> Proyección acumulada 12 meses (Jul 2026 – Jun 2027)</div>
+    <canvas id="inversionChart" style="max-height:220px"></canvas>
+    <div id="inversionAccion" style="margin-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
+  </div>
+
   <!-- Fugas -->
   <p class="section-label">Las 4 fugas principales</p>
   <div class="insight-grid">
@@ -496,11 +514,75 @@ function render(d) {
   // Footer
   $('footerUpdate').textContent = `📅 Actualizado: ${d.meta.actualizado} · ${d.resumen.n_tickets} tickets registrados`;
 
+  renderInversion(d);
+
   // Show content
   $('appContent').style.display='block';
   $('appFooter').style.display='block';
   setTimeout(()=>{ $('loader').classList.add('hide'); }, 600);
 }
+
+function renderInversion(d) {
+  const inv = d.plan_inversion;
+  if (!inv) return;
+  const sa = inv.situacion_actual;
+
+  $('inversionActual').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem">
+      <div style="background:var(--teal-l);border-radius:10px;padding:.9rem;text-align:center">
+        <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;margin-bottom:3px">GBM Forjadores</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--teal)">${fmt(sa.gbm_forjadores.aportacion_mensual)}/mes</div>
+        <div style="font-size:11px;color:var(--teal);margin-top:2px">~${(sa.gbm_forjadores.rendimiento_estimado_anual*100).toFixed(0)}% anual</div>
+      </div>
+      <div style="background:var(--green-l);border-radius:10px;padding:.9rem;text-align:center">
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;margin-bottom:3px">CETES Directo</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green)">${fmt(sa.cetes_directo.saldo_estimado)}</div>
+        <div style="font-size:11px;color:var(--green);margin-top:2px">~${(sa.cetes_directo.rendimiento_estimado_anual*100).toFixed(2)}% anual</div>
+      </div>
+    </div>
+    ${inv.accion_inmediata.map(a=>`
+      <div style="display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--border-soft);font-size:13px;align-items:flex-start">
+        <span style="color:var(--teal);font-weight:700;flex-shrink:0">${a.split('.')[0]}.</span>
+        <span style="color:var(--ink-soft)">${a.split('.').slice(1).join('.').trim()}</span>
+      </div>`).join('')}`;
+
+  const cols = ['Instrumento','Riesgo','Rendimiento','Liquidez','Mínimo'];
+  $('inversionTabla').innerHTML = `
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead><tr>${cols.map(c=>`<th style="text-align:left;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);padding:0 6px 8px;border-bottom:1px solid var(--border)">${c}</th>`).join('')}</tr></thead>
+      <tbody>${inv.comparativa_instrumentos.map((r,i)=>`
+        <tr style="${i%2===0?'':'background:var(--bg)'}">
+          <td style="padding:8px 6px;font-weight:600;border-bottom:1px solid var(--border-soft)">${r.nombre}</td>
+          <td style="padding:8px 6px;border-bottom:1px solid var(--border-soft)">
+            <span style="font-size:10px;padding:2px 6px;border-radius:10px;font-weight:600;background:${r.riesgo.includes('Muy')? 'var(--green-l)':r.riesgo.includes('Bajo')?'var(--teal-l)':'var(--amber-l)'};color:${r.riesgo.includes('Muy')? 'var(--green)':r.riesgo.includes('Bajo')?'var(--teal)':'var(--amber)'}">${r.riesgo}</span>
+          </td>
+          <td style="padding:8px 6px;border-bottom:1px solid var(--border-soft);font-weight:600;color:var(--green)">${r.rendimiento}</td>
+          <td style="padding:8px 6px;border-bottom:1px solid var(--border-soft);color:var(--ink-faint)">${r.liquidez}</td>
+          <td style="padding:8px 6px;border-bottom:1px solid var(--border-soft);color:var(--ink-faint)">${r.minimo}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  const proy = inv.proyeccion_12_meses;
+  const invCtx = $('inversionChart').getContext('2d');
+  new Chart(invCtx,{type:'line',data:{
+    labels:proy.meses,
+    datasets:[
+      {label:'CETES Directo', data:proy.cetes_acum, borderColor:'#166534',backgroundColor:'rgba(22,101,52,.1)',fill:true,tension:.4,pointRadius:3},
+      {label:'GBM Forjadores',data:proy.gbm_acum,  borderColor:'#0F766E',backgroundColor:'rgba(15,118,110,.1)',fill:true,tension:.4,pointRadius:3},
+      {label:'Total acumulado',data:proy.total_acum,borderColor:'#D97706',backgroundColor:'transparent',fill:false,tension:.4,pointRadius:3,borderDash:[5,3]},
+    ]
+  },options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}}},
+    scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{ticks:{callback:v=>'$'+v.toLocaleString('es-MX'),font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}}}}});
+
+  const colors=['var(--red)','var(--teal)','var(--green)','var(--amber)'];
+  const bgs=['var(--red-l)','var(--teal-l)','var(--green-l)','var(--amber-l)'];
+  $('inversionAccion').innerHTML = inv.accion_inmediata.map((a,i)=>`
+    <div style="background:${bgs[i]};border-radius:10px;padding:.85rem;font-size:13px;color:var(--ink-soft);border-left:3px solid ${colors[i]}">
+      <strong style="color:${colors[i]}">${a.split('.')[0]}.</strong> ${a.split('.').slice(1).join('.').trim()}
+    </div>`).join('');
+}
+
 
 loadAndRender();
 </script>
