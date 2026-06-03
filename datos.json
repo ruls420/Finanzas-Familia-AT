@@ -1,6 +1,6 @@
 {
   "meta": {
-    "actualizado": "02/06/2026",
+    "actualizado": "03/06/2026",
     "periodo_estado": "22-Abr al 21-May-2026",
     "titular": "Familia Astudillo",
     "version": "3.0",
@@ -394,6 +394,46 @@
         "Super combo"
       ],
       "tienda": "Asadero Betsaida"
+    },
+    {
+      "fecha": "19/04/2026",
+      "total": 2718.9,
+      "articulos": 16,
+      "forma_pago": "Pago normal (1 exhibición)",
+      "ticket_num": "1673",
+      "items_clave": [
+        "QSO Monterrey/Jack",
+        "Tocino Bajo Sodio",
+        "Molida de Res",
+        "Pollo Rostizado",
+        "Jamón de Pavo",
+        "Aguacate Hass",
+        "Pretzel",
+        "Salmas",
+        "Bimbo Pan"
+      ],
+      "tienda": "Costco Los Cabos Suc. 724",
+      "a_meses": false
+    },
+    {
+      "fecha": "19/04/2026",
+      "total": 7202.83,
+      "articulos": 8,
+      "forma_pago": "6 mensualidades de $1,200.47",
+      "ticket_num": "1672",
+      "items_clave": [
+        "Batería de Cocina",
+        "Pañós Microfibra",
+        "Vanish Ultimate 9L",
+        "Downy Aqua 8.5L",
+        "Puma Calzoncillos",
+        "Más Color Det. 9L",
+        "Fragancia Dama x2"
+      ],
+      "tienda": "Costco Los Cabos Suc. 724",
+      "a_meses": true,
+      "mensualidades": 6,
+      "cuota": 1200.47
     }
   ],
   "plan_meses": [
@@ -885,5 +925,279 @@
       "3. En GBM+: cambiar aportación mensual de $161 → $500 desde Julio",
       "4. Con los $250 que ya tienes en CETES: déjalos rotar en CETES 91 días para mejor tasa"
     ]
+  },
+  "costco_productos_historial": {
+    "descripcion": "Historial de productos comprados en Costco. Cada vez que llegue un ticket nuevo, Claude actualiza el conteo y calcula la frecuencia real.",
+    "instruccion_claude": "Cuando llegue un ticket nuevo de Costco: buscar cada artículo por número (campo 'art') o descripción, agregar la nueva compra al array 'compras' con fecha y precio. Si es nuevo producto, agregar al catálogo. Con 2+ compras calcular frecuencia real en días.",
+    "productos": [
+      {
+        "art": "8032",
+        "desc": "QSO MONTERREY/JACK",
+        "cat": "🧀 Lácteos",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 295.64
+          }
+        ],
+        "frecuencia_estimada": "Mensual",
+        "nota": "Queso familiar — se acaba rápido"
+      },
+      {
+        "art": "1319409",
+        "desc": "JAMÓN DE PAVO",
+        "cat": "🥩 Carnes",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 214.49
+          }
+        ],
+        "frecuencia_estimada": "Cada 3-4 semanas",
+        "nota": ""
+      },
+      {
+        "art": "77000",
+        "desc": "TOCINO BAJO SODIO",
+        "cat": "🥩 Carnes",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 336.56
+          }
+        ],
+        "frecuencia_estimada": "Mensual",
+        "nota": ""
+      },
+      {
+        "art": "2616355",
+        "desc": "MOLIDA DE RES",
+        "cat": "🥩 Carnes",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 452.7
+          }
+        ],
+        "frecuencia_estimada": "Mensual",
+        "nota": "Precio variable por kg — este: $452.70 por 2.970kg (~$152/kg)"
+      },
+      {
+        "art": "555491",
+        "desc": "POLLO ROSTIZADO",
+        "cat": "🥩 Carnes",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 121.71
+          }
+        ],
+        "frecuencia_estimada": "Mensual",
+        "nota": "2.970 kg a $452.70/kg"
+      },
+      {
+        "art": "506802",
+        "desc": "AGUACATE HASS 1.5K",
+        "cat": "🥗 Frescos",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 102.19
+          }
+        ],
+        "frecuencia_estimada": "Mensual",
+        "nota": ""
+      },
+      {
+        "art": "850976",
+        "desc": "PRETZEL CRUJ 737G",
+        "cat": "🍿 Botanas",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 131.96
+          }
+        ],
+        "frecuencia_estimada": "Cada 4-6 semanas",
+        "nota": ""
+      },
+      {
+        "art": "598443",
+        "desc": "SALMAS 48/18G",
+        "cat": "🍿 Botanas",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 131.96
+          }
+        ],
+        "frecuencia_estimada": "Cada 4-6 semanas",
+        "nota": ""
+      },
+      {
+        "art": "684856",
+        "desc": "BIMBO PAN BLANCO",
+        "cat": "🍞 Pan",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 81.73
+          }
+        ],
+        "frecuencia_estimada": "Mensual",
+        "nota": ""
+      },
+      {
+        "art": "1064615",
+        "desc": "KS ACEITE UVA 2L",
+        "cat": "🫙 Abarrotes",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 183.11
+          }
+        ],
+        "frecuencia_estimada": "Cada 2-3 meses",
+        "nota": "Aceite de uva 2L — duración larga"
+      },
+      {
+        "art": "176009",
+        "desc": "BATERÍA DE COCINA",
+        "cat": "🏠 Hogar",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 818.4
+          }
+        ],
+        "frecuencia_estimada": "Compra única",
+        "nota": "Parte de compra a 6 meses"
+      },
+      {
+        "art": "617560",
+        "desc": "VANISH ULTIMATE 9L",
+        "cat": "🧹 Limpieza",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 326.33
+          }
+        ],
+        "frecuencia_estimada": "Cada 3-4 meses",
+        "nota": ""
+      },
+      {
+        "art": "630971",
+        "desc": "DOWNY AQUA 8.5L",
+        "cat": "🧹 Limpieza",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 367.25
+          }
+        ],
+        "frecuencia_estimada": "Cada 3-4 meses",
+        "nota": ""
+      },
+      {
+        "art": "505169",
+        "desc": "MÁS COLOR DET. 9L",
+        "cat": "🧹 Limpieza",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 346.79
+          }
+        ],
+        "frecuencia_estimada": "Cada 3-4 meses",
+        "nota": ""
+      },
+      {
+        "art": "693082",
+        "desc": "PUMA CALZONCILLOS",
+        "cat": "👗 Ropa",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 479.77
+          }
+        ],
+        "frecuencia_estimada": "Esporádica",
+        "nota": "Ropa — no recurrente"
+      },
+      {
+        "art": "544465",
+        "desc": "FRAGANCIA DAMA/CABALLERO",
+        "cat": "🧴 Belleza",
+        "compras": [
+          {
+            "fecha": "19/04/2026",
+            "precio": 2453.02
+          }
+        ],
+        "frecuencia_estimada": "Esporádica",
+        "nota": "2 piezas — $1,226.51 c/u"
+      }
+    ],
+    "resumen_categorias": {
+      "🥩 Carnes": {
+        "total_gastado": 1125.46,
+        "n_productos": 4
+      },
+      "🥗 Frescos": {
+        "total_gastado": 490.49,
+        "n_productos": 4
+      },
+      "🧀 Lácteos": {
+        "total_gastado": 454.2,
+        "n_productos": 2
+      },
+      "🍿 Botanas": {
+        "total_gastado": 366.11,
+        "n_productos": 3
+      },
+      "🧹 Limpieza": {
+        "total_gastado": 1040.37,
+        "n_productos": 3
+      },
+      "🧴 Belleza": {
+        "total_gastado": 2453.02,
+        "n_productos": 1
+      },
+      "🏠 Hogar": {
+        "total_gastado": 1616.34,
+        "n_productos": 2
+      },
+      "👗 Ropa": {
+        "total_gastado": 479.77,
+        "n_productos": 1
+      },
+      "🫙 Abarrotes": {
+        "total_gastado": 183.11,
+        "n_productos": 1
+      },
+      "🍞 Pan": {
+        "total_gastado": 81.73,
+        "n_productos": 1
+      }
+    }
+  },
+  "costco_a_meses": {
+    "compra_abr_2026": {
+      "fecha": "19/04/2026",
+      "total": 7202.83,
+      "mensualidades": 6,
+      "cuota": 1200.47,
+      "inicio": "Abril 2026",
+      "termina": "Septiembre 2026",
+      "pagado_hasta": "Cuota 2 de 6 (según estado cuenta Mayo)",
+      "pendiente_capital": 4801.89,
+      "productos_principales": [
+        "Batería de Cocina $818",
+        "Fragancias x2 $2,453",
+        "Puma Calzoncillos $480",
+        "Detergentes/Suavizante ~$1,040"
+      ]
+    }
   }
 }
